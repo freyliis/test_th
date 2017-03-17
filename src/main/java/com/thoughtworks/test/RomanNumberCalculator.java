@@ -16,7 +16,7 @@ public class RomanNumberCalculator {
                 }
                 sum += currentNumber.getValue();
             } else if (previousNumber != null && currentNumber.getValue() > previousNumber.getValue()) {
-                if (repeatedNumberCounter > 1) {
+                if (repeatedNumberCounter > 1 || !currentNumber.canSubtract(previousNumber)) {
                     throw new IllegalArgumentException();
                 }
                 sum += (currentNumber.getValue() - 2 * previousNumber.getValue());
