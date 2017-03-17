@@ -9,6 +9,9 @@ public class RomanNumberCalculator {
             RomanNumber currentNumber = romanNumbers[i];
 
             if (currentNumber.equals(previousNumber)) {
+                if (!currentNumber.isRepeatable()) {
+                    throw new IllegalArgumentException();
+                }
                 repeatedNumber++;
                 if (repeatedNumber > 3) {
                     throw new IllegalArgumentException();

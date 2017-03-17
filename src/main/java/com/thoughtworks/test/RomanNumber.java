@@ -1,16 +1,22 @@
 package com.thoughtworks.test;
 
 public enum RomanNumber {
-    I(1), V(5), X(10), L(50), C(100), D(500), M(1000);
+    I(1, true), V(5, false), X(10, true), L(50, false), C(100, true), D(500, false), M(1000, true);
 
     private Integer value;
+    private boolean repeatable;
 
 
-    RomanNumber(int i) {
-        this.value = i;
+    RomanNumber(int value, boolean repeatable) {
+        this.value = value;
+        this.repeatable = repeatable;
     }
 
     public Integer getValue() {
         return value;
+    }
+
+    public boolean isRepeatable() {
+        return repeatable;
     }
 }
