@@ -9,10 +9,10 @@ import static org.junit.Assert.*;
 public class RomanNumberCalculatorTest {
 
     @Test
-    public void shouldCalculateVIAs6() {
+    public void shouldCalculateVIIIAs8() {
         RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
-        int result = objectUnderTest.calculate(V, I);
-        assertThat(result, is(6));
+        int result = objectUnderTest.calculate(V, I, I, I);
+        assertThat(result, is(8));
     }
 
     @Test
@@ -27,13 +27,6 @@ public class RomanNumberCalculatorTest {
         RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
         int result = objectUnderTest.calculate(X, X, X, I, I);
         assertThat(result, is(32));
-    }
-
-    @Test
-    public void shouldCalculateIVAs4() {
-        RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
-        int result = objectUnderTest.calculate(I, V);
-        assertThat(result, is(4));
     }
 
     @Test
@@ -71,15 +64,75 @@ public class RomanNumberCalculatorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowAnExceptionForVV() {
+        RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
+        objectUnderTest.calculate(V, V);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowAnExceptionForLL() {
+        RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
+        objectUnderTest.calculate(L, L);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void shouldThrowAnExceptionForDD() {
         RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
         objectUnderTest.calculate(D, D);
     }
 
-//    @Test(expected = IllegalArgumentException.class)
-//    public void shouldThrowAnExceptionForIIV() {
-//        RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
-//        objectUnderTest.calculate(I, I, V);
-//    }
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowAnExceptionForIIIVI() {
+        RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
+        objectUnderTest.calculate(I, I, I, V, I);
+    }
+
+    @Test
+    public void shouldCalculateIVAs4() {
+        RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
+        int result = objectUnderTest.calculate(I, V);
+        assertThat(result, is(4));
+    }
+
+    @Test
+    public void shouldCalculateIXAs9() {
+        RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
+        int result = objectUnderTest.calculate(I, X);
+        assertThat(result, is(9));
+    }
+
+    @Test
+    public void shouldCalculateXLAs40() {
+        RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
+        int result = objectUnderTest.calculate(X, L);
+        assertThat(result, is(40));
+    }
+
+    @Test
+    public void shouldCalculateXCAs90() {
+        RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
+        int result = objectUnderTest.calculate(X, C);
+        assertThat(result, is(90));
+    }
+
+    @Test
+    public void shouldCalculateCDAs400() {
+        RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
+        int result = objectUnderTest.calculate(C, D);
+        assertThat(result, is(400));
+    }
+
+    @Test
+    public void shouldCalculateCMAs900() {
+        RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
+        int result = objectUnderTest.calculate(C, M);
+        assertThat(result, is(900));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowAnExceptionForIL() {
+        RomanNumberCalculator objectUnderTest = new RomanNumberCalculator();
+        objectUnderTest.calculate(I, L);
+    }
 
 }

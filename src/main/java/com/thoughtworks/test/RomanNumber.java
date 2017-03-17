@@ -19,4 +19,9 @@ public enum RomanNumber {
     public boolean isRepeatable() {
         return repeatable;
     }
+
+    public boolean isRepeated(RomanNumber previousRomanNumber) {
+        return this.equals(previousRomanNumber);
+
+    }
 }
