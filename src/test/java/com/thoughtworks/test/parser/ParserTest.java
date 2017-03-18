@@ -24,15 +24,4 @@ public class ParserTest {
         Parser objectUnderTest = new Parser(intergalacticUnitToRomanNumbersMap, resourcesRepository);
         objectUnderTest.parse("");
     }
-
-
-    @Test
-    public void shouldParseGlobGlobSilverIs34CreditsToSilverWithPrice() {
-        intergalacticUnitToRomanNumbersMap = new IntergalacticUnitToRomanNumbersMap();
-        intergalacticUnitToRomanNumbersMap.addIntergalacticUnitToRomanNumber("glob", RomanNumber.I);
-        Parser objectUnderTest = new Parser(intergalacticUnitToRomanNumbersMap, resourcesRepository);
-        objectUnderTest.parse("glob glob Silver is 34 Credits");
-        assertThat(resourcesRepository.getResourceByName("Silver").get().getPrice(), is(17d));
-    }
-
 }

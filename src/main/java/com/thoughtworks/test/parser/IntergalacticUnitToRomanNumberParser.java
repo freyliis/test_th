@@ -3,7 +3,8 @@ package com.thoughtworks.test.parser;
 import com.thoughtworks.test.IntergalacticUnitToRomanNumbersMap;
 import com.thoughtworks.test.RomanNumber;
 
-public class IntergalacticUnitToRomanNumberParser {
+public class IntergalacticUnitToRomanNumberParser implements ReadParser {
+
 
     private IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap;
 
@@ -11,10 +12,14 @@ public class IntergalacticUnitToRomanNumberParser {
         this.intergalacticUnitToRomanNumbersMap = intergalacticUnitToRomanNumbersMap;
     }
 
-    public void parse(String inputText) {
-        String[] split = inputText.split("is");
-        String intergalacticUnit = split[0].trim();
-        RomanNumber romanNumber = RomanNumber.valueOf(split[1].trim());
-        intergalacticUnitToRomanNumbersMap.addIntergalacticUnitToRomanNumber(intergalacticUnit, romanNumber);
+    public boolean parse(String inputText) {
+        String[] split = inputText.split(IS_REGEX);
+        if (split.length == 2) {
+            String intergalacticUnit = split[0].trim();
+            RomanNumber romanNumber = RomanNumber.valueOf(split[1].trim());
+            intergalacticUnitToRomanNumbersMap.addIntergalacticUnitToRomanNumber(intergalacticUnit, romanNumber);
+            return true;
+        }
+        return false;
     }
 }
