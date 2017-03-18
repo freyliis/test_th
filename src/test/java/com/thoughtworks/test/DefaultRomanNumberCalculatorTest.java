@@ -9,13 +9,13 @@ import static com.thoughtworks.test.RomanNumber.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
-public class RomanNumberCalculatorTest {
+public class DefaultRomanNumberCalculatorTest {
 
-    private RomanNumberCalculator objectUnderTest;
+    private DefaultRomanNumberCalculator objectUnderTest;
 
     @Before
     public void setUp() throws Exception {
-        objectUnderTest = new RomanNumberCalculator();
+        objectUnderTest = new DefaultRomanNumberCalculator();
     }
 
     @Test

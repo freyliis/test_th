@@ -2,6 +2,7 @@ package com.thoughtworks.test.parser;
 
 import com.thoughtworks.test.IntergalacticUnitToRomanNumbersMap;
 import com.thoughtworks.test.RomanNumber;
+import com.thoughtworks.test.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.RomanNumberCalculator;
 import com.thoughtworks.test.resources.Resource;
 import com.thoughtworks.test.resources.ResourcesRepository;
@@ -11,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class ResourceParser implements ReadParser{
+public class ResourceParser implements ReadParser {
     public static final String CREDITS = "Credits";
     private IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap;
     private ResourcesRepository resourcesRepository;
@@ -25,9 +26,9 @@ public class ResourceParser implements ReadParser{
 
     public boolean parse(String inputText) {
         if (inputText.endsWith(CREDITS)) {
-            String[] split = inputText.split("is");
+            String[] split = inputText.split(IS_REGEX);
             List<RomanNumber> romanNumbersInSequence = new ArrayList<>();
-            String[] numbersAndResourceName = split[0].split("\\s");
+            String[] numbersAndResourceName = split[0].split(SEPARATOR);
             int indexOfResourceName = parseRomanNumbers(romanNumbersInSequence, numbersAndResourceName);
             String resourceName = parseResourceName(numbersAndResourceName, indexOfResourceName);
             double totalPrice = getTotalPrice(split[1]);

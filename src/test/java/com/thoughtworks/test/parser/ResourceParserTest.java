@@ -2,7 +2,7 @@ package com.thoughtworks.test.parser;
 
 import com.thoughtworks.test.IntergalacticUnitToRomanNumbersMap;
 import com.thoughtworks.test.RomanNumber;
-import com.thoughtworks.test.RomanNumberCalculator;
+import com.thoughtworks.test.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.resources.ResourcesInMemory;
 import org.junit.Test;
 
@@ -13,7 +13,7 @@ public class ResourceParserTest {
 
     private IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap = new IntergalacticUnitToRomanNumbersMap();
     private ResourcesInMemory resourcesRepository = new ResourcesInMemory();
-    private RomanNumberCalculator romanNumberCalculator = new RomanNumberCalculator();
+    private DefaultRomanNumberCalculator romanNumberCalculator = new DefaultRomanNumberCalculator();
 
     @Test
     public void shouldParseGlobGlobSilverIs34CreditsToSilverWithPrice() {

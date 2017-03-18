@@ -7,18 +7,14 @@ import java.util.*;
 
 public class Parser {
 
-
-    private RomanNumberCalculator romanNumberCalculator = new RomanNumberCalculator();
-    private final IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap;
-    private final ResourcesRepository resourcesRepository;
     private List<ReadParser> parsers = new ArrayList<>();
+    private Map<String, String> results = new HashMap<>();
 
 
-    public Parser(IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap, ResourcesRepository resourcesRepository) {
-        this.intergalacticUnitToRomanNumbersMap = intergalacticUnitToRomanNumbersMap;
-        this.resourcesRepository = resourcesRepository;
+    public Parser(IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap, ResourcesRepository resourcesRepository, RomanNumberCalculator romanNumberCalculator) {
+        parsers.add(new HowMuchQuestionParser(romanNumberCalculator, intergalacticUnitToRomanNumbersMap, results));
+        parsers.add(new ResourceParser(intergalacticUnitToRomanNumbersMap, resourcesRepository, romanNumberCalculator));
         parsers.add(new IntergalacticUnitToRomanNumberParser(intergalacticUnitToRomanNumbersMap));
-        parsers.add(new ResourceParser(intergalacticUnitToRomanNumbersMap, resourcesRepository, new RomanNumberCalculator()));
     }
 
     public void parse(String inputText) {
@@ -26,8 +22,16 @@ public class Parser {
             throw new IllegalArgumentException();
         }
         for (ReadParser parser : parsers) {
-            parser.parse(inputText);
+            try {
+                if (parser.parse(inputText))
+                    break;
+            } catch (ParserException e) {
+                e.printStackTrace();
+            }
         }
+    }
 
+    public Map<String, String> getResults() {
+        return Collections.unmodifiableMap(results);
     }
 }
