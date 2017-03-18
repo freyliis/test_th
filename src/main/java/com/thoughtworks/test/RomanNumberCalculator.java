@@ -6,27 +6,27 @@ public class RomanNumberCalculator {
         int repeatedNumberCounter = 1;
         RomanNumber previousNumber = null;
         for (RomanNumber currentNumber : romanNumbers) {
+            Integer currentValue = currentNumber.getValue();
             if (currentNumber.isRepeated(previousNumber)) {
-                if (!currentNumber.isRepeatable()) {
-                    throw new IllegalArgumentException();
-                }
+                canBeRepeated(repeatedNumberCounter, currentNumber);
                 repeatedNumberCounter++;
-                if (repeatedNumberCounter > 3) {
-                    throw new IllegalArgumentException();
-                }
-                sum += currentNumber.getValue();
-            } else if (previousNumber != null && currentNumber.getValue() > previousNumber.getValue()) {
+            } else if (previousNumber != null && currentValue > previousNumber.getValue()) {
                 if (repeatedNumberCounter > 1 || !currentNumber.canSubtract(previousNumber)) {
                     throw new IllegalArgumentException();
                 }
-                sum += (currentNumber.getValue() - 2 * previousNumber.getValue());
-
+                sum -= 2 * previousNumber.getValue();
             } else {
                 repeatedNumberCounter = 1;
-                sum += currentNumber.getValue();
             }
+            sum += currentValue;
             previousNumber = currentNumber;
         }
         return sum;
+    }
+
+    private void canBeRepeated(int repeatedNumberCounter, RomanNumber currentNumber) {
+        if (!currentNumber.canBeRepeated(repeatedNumberCounter)) {
+            throw new IllegalArgumentException();
+        }
     }
 }

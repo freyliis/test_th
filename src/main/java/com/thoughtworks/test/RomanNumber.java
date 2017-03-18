@@ -5,22 +5,22 @@ import java.util.Collections;
 import java.util.List;
 
 public enum RomanNumber {
-    I(1, true, Collections.emptyList()),
-    V(5, false, Arrays.asList(new RomanNumber[]{RomanNumber.I})),
-    X(10, true, Arrays.asList(new RomanNumber[]{RomanNumber.I})),
-    L(50, false, Arrays.asList(new RomanNumber[]{RomanNumber.X})),
-    C(100, true, Arrays.asList(new RomanNumber[]{RomanNumber.X})),
-    D(500, false, Arrays.asList(new RomanNumber[]{RomanNumber.C})),
-    M(1000, true, Arrays.asList(new RomanNumber[]{RomanNumber.C}));
+    I(1, 3, Collections.emptyList()),
+    V(5, 1, Arrays.asList(new RomanNumber[]{RomanNumber.I})),
+    X(10, 3, Arrays.asList(new RomanNumber[]{RomanNumber.I})),
+    L(50, 1, Arrays.asList(new RomanNumber[]{RomanNumber.X})),
+    C(100, 3, Arrays.asList(new RomanNumber[]{RomanNumber.X})),
+    D(500, 1, Arrays.asList(new RomanNumber[]{RomanNumber.C})),
+    M(1000, 3, Arrays.asList(new RomanNumber[]{RomanNumber.C}));
 
     private Integer value;
-    private boolean repeatable;
+    private int repeatLimit;
     private List<RomanNumber> properSubtractionNumbers;
 
 
-    RomanNumber(int value, boolean repeatable, List<RomanNumber> properSubtractionNumbers) {
+    RomanNumber(int value, int repeatLimit, List<RomanNumber> properSubtractionNumbers) {
         this.value = value;
-        this.repeatable = repeatable;
+        this.repeatLimit = repeatLimit;
         this.properSubtractionNumbers = properSubtractionNumbers;
     }
 
@@ -28,8 +28,8 @@ public enum RomanNumber {
         return value;
     }
 
-    public boolean isRepeatable() {
-        return repeatable;
+    public boolean canBeRepeated(int currentRepeatCounter) {
+        return this.repeatLimit > currentRepeatCounter;
     }
 
     public boolean isRepeated(RomanNumber romanNumber) {
