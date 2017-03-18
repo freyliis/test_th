@@ -1,7 +1,10 @@
 package com.thoughtworks.test;
 
+import java.util.List;
+
 public class RomanNumberCalculator {
-    public int calculate(RomanNumber... romanNumbers) {
+
+    public int calculate(List<RomanNumber> romanNumbers) {
         int sum = 0;
         int repeatedNumberCounter = 1;
         RomanNumber previousNumber = null;
