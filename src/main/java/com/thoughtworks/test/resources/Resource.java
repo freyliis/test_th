@@ -1,4 +1,4 @@
-package com.thoughtworks.test;
+package com.thoughtworks.test.resources;
 
 public class Resource {
     private String name;
@@ -26,5 +26,9 @@ public class Resource {
 
     public double getPrice() {
         return price;
+    }
+
+    public String getName() {
+        return name;
     }
 }
