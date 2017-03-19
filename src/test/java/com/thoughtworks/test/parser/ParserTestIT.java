@@ -27,21 +27,22 @@ public class ParserTestIT {
         objectUnderTest.parse("");
     }
 
-//    @Test
-//    public void shouldParseHowMuchQuestion() {
-//        Parser objectUnderTest = new Parser(intergalacticUnitToRomanNumbersMap, resourcesRepository, romanNumberCalculator);
-//        objectUnderTest.parse("glob is I");
-//        objectUnderTest.parse("prok is V");
-//        objectUnderTest.parse("pish is X");
-//        objectUnderTest.parse("tegj is L");
-//
-//        objectUnderTest.parse("glob glob Silver is 34 Credits");
-//        objectUnderTest.parse("glob prok Gold is 57800 Credits");
-//        objectUnderTest.parse("pish pish Iron is 3910 Credits");
-//
-//        objectUnderTest.parse(" how much is pish tegj glob glob ?");
-//
-//        assertThat(objectUnderTest.getResults().size(), is(1));
-//        assertThat(objectUnderTest.getResults().get("pish tegj glob glob"), is("42"));
-//    }
+    @Test
+    public void shouldParseHowMuchQuestion() {
+        Parser objectUnderTest = new Parser(intergalacticUnitToRomanNumbersMap, resourcesRepository, romanNumberCalculator);
+        objectUnderTest.parse("glob is I");
+        objectUnderTest.parse("prok is V");
+        objectUnderTest.parse("pish is X");
+        objectUnderTest.parse("tegj is L");
+
+        objectUnderTest.parse("glob glob Silver is 34 Credits");
+        objectUnderTest.parse("glob prok Gold is 57800 Credits");
+        objectUnderTest.parse("pish pish Iron is 3910 Credits");
+
+        objectUnderTest.parse(" how much is pish tegj glob glob ?");
+        objectUnderTest.parse("how much wood could a woodchuck chuck if a woodchuck could chuck wood ?");
+
+        assertThat(objectUnderTest.getQuestions().size(), is(1));
+        assertThat(objectUnderTest.getQuestions().get(0), is("pish tegj glob glob"));
+    }
 }

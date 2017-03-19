@@ -1,18 +1,21 @@
 package com.thoughtworks.test.parser;
 
-import com.thoughtworks.test.*;
+import com.thoughtworks.test.IntergalacticUnitToRomanNumbersMap;
+import com.thoughtworks.test.RomanNumberCalculator;
 import com.thoughtworks.test.resources.ResourcesRepository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Parser {
 
     private List<ReadParser> parsers = new ArrayList<>();
-    private Map<String, String> results = new HashMap<>();
+    private List<String> questions = new ArrayList<>();
 
 
     public Parser(IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap, ResourcesRepository resourcesRepository, RomanNumberCalculator romanNumberCalculator) {
-        parsers.add(new HowMuchQuestionParser(romanNumberCalculator, intergalacticUnitToRomanNumbersMap, results));
+        parsers.add(new HowMuchQuestionParser(questions));
         parsers.add(new ResourceParser(intergalacticUnitToRomanNumbersMap, resourcesRepository, romanNumberCalculator));
         parsers.add(new IntergalacticUnitToRomanNumberParser(intergalacticUnitToRomanNumbersMap));
     }
@@ -23,7 +26,7 @@ public class Parser {
         }
         for (ReadParser parser : parsers) {
             try {
-                if (parser.parse(inputText))
+                if (parser.parse(inputText.trim()))
                     break;
             } catch (ParserException e) {
                 e.printStackTrace();
@@ -31,7 +34,7 @@ public class Parser {
         }
     }
 
-    public Map<String, String> getResults() {
-        return Collections.unmodifiableMap(results);
+    public List<String> getQuestions() {
+        return Collections.unmodifiableList(questions);
     }
 }
