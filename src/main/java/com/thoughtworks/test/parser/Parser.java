@@ -15,7 +15,8 @@ public class Parser {
 
 
     public Parser(IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap, ResourcesRepository resourcesRepository, RomanNumberCalculator romanNumberCalculator) {
-        parsers.add(new HowMuchQuestionParser(questions));
+        parsers.add(new QuestionParser(ReadParser.HOW_MUCH_IS_REGEX, questions));
+        parsers.add(new QuestionParser(ReadParser.HOW_MANY_IS_REGEX, questions));
         parsers.add(new ResourceParser(intergalacticUnitToRomanNumbersMap, resourcesRepository, romanNumberCalculator));
         parsers.add(new IntergalacticUnitToRomanNumberParser(intergalacticUnitToRomanNumbersMap));
     }
