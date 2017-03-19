@@ -1,8 +1,7 @@
 package com.thoughtworks.test.number;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+
+import java.util.*;
 
 public class IntergalacticUnitToRomanNumbersMap {
 
@@ -15,4 +14,18 @@ public class IntergalacticUnitToRomanNumbersMap {
     public Optional<RomanNumber> getRomanNumberForIntergalacticUnit(String intergalacticUnit) {
         return Optional.ofNullable(intergalacticUnitsToRomanNumbers.get(intergalacticUnit));
     }
+
+    public List<RomanNumber> readRomanNumbers(String[] numbersAndResourceName) {
+        List<RomanNumber> romanNumbersInSequence = new ArrayList<>();
+        for (String possibleNumber : numbersAndResourceName) {
+            Optional<RomanNumber> romanNumberForIntergalacticUnit = this.getRomanNumberForIntergalacticUnit(possibleNumber);
+            if (romanNumberForIntergalacticUnit.isPresent()) {
+                romanNumbersInSequence.add(romanNumberForIntergalacticUnit.get());
+            } else {
+                break;
+            }
+        }
+        return romanNumbersInSequence;
+    }
+
 }

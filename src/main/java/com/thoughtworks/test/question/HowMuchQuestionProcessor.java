@@ -5,9 +5,7 @@ import com.thoughtworks.test.number.RomanNumber;
 import com.thoughtworks.test.number.RomanNumberCalculator;
 import com.thoughtworks.test.parser.ParserException;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static com.thoughtworks.test.parser.ReadParser.IS_REGEX;
 import static com.thoughtworks.test.parser.ReadParser.SEPARATOR;
@@ -24,15 +22,10 @@ public class HowMuchQuestionProcessor implements QuestionProcessor {
 
     @Override
     public String answerQuestion(String question) throws ParserException {
-        String[] split = question.split(SEPARATOR);
-        List<RomanNumber> romanNumbers = new ArrayList<>();
-        for (String text : split) {
-            Optional<RomanNumber> romanNumberForIntergalacticUnit = intergalacticUnitToRomanNumbersMap.getRomanNumberForIntergalacticUnit(text);
-            if (romanNumberForIntergalacticUnit.isPresent()) {
-                romanNumbers.add(romanNumberForIntergalacticUnit.get());
-            } else {
-                throw new ParserException();
-            }
+        String[] numbers = question.split(SEPARATOR);
+        List<RomanNumber> romanNumbers = intergalacticUnitToRomanNumbersMap.readRomanNumbers(numbers);
+        if (romanNumbers.size() != numbers.length) {
+            throw new ParserException();
         }
         int result = romanNumberCalculator.calculate(romanNumbers);
         return getAnswer(question, Integer.toString(result));

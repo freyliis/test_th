@@ -1,13 +1,13 @@
 package com.thoughtworks.test.parser;
 
+import com.thoughtworks.test.number.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
 import com.thoughtworks.test.number.RomanNumber;
-import com.thoughtworks.test.number.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.resources.ResourcesInMemory;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class ResourceParserTest {
 
@@ -48,6 +48,4 @@ public class ResourceParserTest {
         ResourceParser objectUnderTest = new ResourceParser(intergalacticUnitToRomanNumbersMap, resourcesRepository, romanNumberCalculator);
         objectUnderTest.parse("glob is Silver bub Credits");
     }
-
-
 }

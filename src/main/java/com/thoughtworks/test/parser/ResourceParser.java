@@ -6,10 +6,8 @@ import com.thoughtworks.test.number.RomanNumberCalculator;
 import com.thoughtworks.test.resources.Resource;
 import com.thoughtworks.test.resources.ResourcesRepository;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class ResourceParser implements ReadParser {
 
@@ -26,10 +24,9 @@ public class ResourceParser implements ReadParser {
     public boolean parse(String inputText) {
         if (inputText.endsWith(CREDITS)) {
             String[] split = inputText.split(IS_REGEX);
-            List<RomanNumber> romanNumbersInSequence = new ArrayList<>();
             String[] numbersAndResourceName = split[0].split(SEPARATOR);
-            int indexOfResourceName = parseRomanNumbers(romanNumbersInSequence, numbersAndResourceName);
-            String resourceName = parseResourceName(numbersAndResourceName, indexOfResourceName);
+            List<RomanNumber> romanNumbersInSequence = intergalacticUnitToRomanNumbersMap.readRomanNumbers(numbersAndResourceName);
+            String resourceName = parseResourceName(numbersAndResourceName, romanNumbersInSequence.size());
             double totalPrice = getTotalPrice(split[1]);
             double resourcePrice = totalPrice / romanNumberCalculator.calculate(romanNumbersInSequence);
             resourcesRepository.addResource(new Resource(resourceName, resourcePrice));
@@ -40,20 +37,6 @@ public class ResourceParser implements ReadParser {
 
     private String parseResourceName(String[] numbersAndResourceName, int indexOfResourceName) {
         return String.join(SEPARATOR, Arrays.copyOfRange(numbersAndResourceName, indexOfResourceName, numbersAndResourceName.length));
-    }
-
-    private int parseRomanNumbers(List<RomanNumber> romanNumbersInSequence, String[] numbersAndResourceName) {
-        int i = 0;
-        for (; i < numbersAndResourceName.length; i++) {
-            String text = numbersAndResourceName[i];
-            Optional<RomanNumber> romanNumberForIntergalacticUnit = intergalacticUnitToRomanNumbersMap.getRomanNumberForIntergalacticUnit(text);
-            if (romanNumberForIntergalacticUnit.isPresent()) {
-                romanNumbersInSequence.add(romanNumberForIntergalacticUnit.get());
-            } else {
-                break;
-            }
-        }
-        return i;
     }
 
     private double getTotalPrice(String inputText) {
