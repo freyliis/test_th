@@ -1,21 +1,25 @@
-package com.thoughtworks.test.parser;
+package com.thoughtworks.test.question;
+
+import com.thoughtworks.test.parser.ParserException;
+import com.thoughtworks.test.parser.ReadParser;
+import com.thoughtworks.test.question.QuestionMap;
 
 import java.util.List;
 
 public class QuestionParser implements ReadParser {
 
     private final String questionRegex;
-    private final List<String> questions;
+    private final QuestionMap questionMap;
 
-    public QuestionParser(String questionRegex, List<String> questions) {
+    public QuestionParser(String questionRegex, QuestionMap questionMap) {
         this.questionRegex = questionRegex;
-        this.questions = questions;
+        this.questionMap = questionMap;
     }
 
     public boolean parse(String inputText) throws ParserException {
         if (inputText.matches(getQuestionRegex(questionRegex))) {
             String questionValues = inputText.replace(questionRegex, "").replace("?", "").trim();
-            questions.add(questionValues);
+            questionMap.addQuestion(questionRegex, questionValues);
             return true;
         }
         return false;

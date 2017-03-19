@@ -3,6 +3,7 @@ package com.thoughtworks.test.parser;
 import com.thoughtworks.test.number.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
 import com.thoughtworks.test.number.RomanNumber;
+import com.thoughtworks.test.resources.ResourceParser;
 import com.thoughtworks.test.resources.ResourcesInMemory;
 import org.junit.Test;
 

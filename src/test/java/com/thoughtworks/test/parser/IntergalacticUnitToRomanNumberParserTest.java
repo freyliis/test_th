@@ -1,5 +1,6 @@
 package com.thoughtworks.test.parser;
 
+import com.thoughtworks.test.number.IntergalacticUnitToRomanNumberParser;
 import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
 import com.thoughtworks.test.number.RomanNumber;
 import org.hamcrest.CoreMatchers;

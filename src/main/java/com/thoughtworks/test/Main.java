@@ -1,13 +1,17 @@
 package com.thoughtworks.test;
 
-import com.thoughtworks.test.parser.Parser;
-import com.thoughtworks.test.question.QuestionProcessor;
+import java.net.URISyntaxException;
 
 public class Main {
 
-    public static void main(String[] args) {
-//        Parser parser = new Parser();
-//        QuestionProcessor
+    public static void main(String[] args) throws URISyntaxException {
+        Runner runner = new DefaultRunner();
+        if (args.length == 1) {
+            runner.run(args[0]);
+        } else {
+            runner.run("input.txt");
+        }
+
     }
 
 }
