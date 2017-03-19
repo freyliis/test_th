@@ -1,6 +1,5 @@
 package com.thoughtworks.test.number;
 
-import com.thoughtworks.test.number.RomanNumber;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -38,10 +37,12 @@ public class RomanNumberTest {
     public void shouldReturnTrueIfXCanBeSubtractedFromC() {
         assertTrue(RomanNumber.C.canSubtract(RomanNumber.X));
     }
+
     @Test
     public void shouldReturnTrueIfCCanBeSubtractedFromD() {
         assertTrue(RomanNumber.D.canSubtract(RomanNumber.C));
     }
+
     @Test
     public void shouldReturnTrueIfCCanBeSubtractedFromM() {
         assertTrue(RomanNumber.M.canSubtract(RomanNumber.C));

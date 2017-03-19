@@ -2,9 +2,6 @@ package com.thoughtworks.test.question;
 
 import com.thoughtworks.test.parser.ParserException;
 import com.thoughtworks.test.parser.ReadParser;
-import com.thoughtworks.test.question.QuestionMap;
-
-import java.util.List;
 
 public class QuestionParser implements ReadParser {
 

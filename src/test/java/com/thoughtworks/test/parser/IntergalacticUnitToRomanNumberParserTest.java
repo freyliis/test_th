@@ -6,9 +6,7 @@ import com.thoughtworks.test.number.RomanNumber;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class IntergalacticUnitToRomanNumberParserTest {
 

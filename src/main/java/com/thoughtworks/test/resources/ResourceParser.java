@@ -4,8 +4,6 @@ import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
 import com.thoughtworks.test.number.RomanNumber;
 import com.thoughtworks.test.number.RomanNumberCalculator;
 import com.thoughtworks.test.parser.ReadParser;
-import com.thoughtworks.test.resources.Resource;
-import com.thoughtworks.test.resources.ResourcesRepository;
 
 import java.util.Arrays;
 import java.util.List;

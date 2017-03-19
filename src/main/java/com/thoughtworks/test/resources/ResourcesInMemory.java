@@ -1,6 +1,8 @@
 package com.thoughtworks.test.resources;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 public class ResourcesInMemory implements ResourcesRepository {
 

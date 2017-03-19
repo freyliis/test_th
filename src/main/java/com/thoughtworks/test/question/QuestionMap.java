@@ -1,6 +1,8 @@
 package com.thoughtworks.test.question;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class QuestionMap {
 

@@ -2,7 +2,10 @@ package com.thoughtworks.test;
 
 import com.thoughtworks.test.inputreader.FileInputReader;
 import com.thoughtworks.test.inputreader.InputReader;
-import com.thoughtworks.test.number.*;
+import com.thoughtworks.test.number.DefaultRomanNumberCalculator;
+import com.thoughtworks.test.number.IntergalacticUnitToRomanNumberParser;
+import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
+import com.thoughtworks.test.number.RomanNumberCalculator;
 import com.thoughtworks.test.outputwriter.ConsoleOutputWriter;
 import com.thoughtworks.test.outputwriter.OutputWriter;
 import com.thoughtworks.test.parser.Parser;
@@ -36,7 +39,6 @@ public class DefaultRunner implements Runner {
             outputWriter.writeOutput(processedQuestions);
         } catch (IOException e) {
             logger.log(e.getLocalizedMessage());
-            e.printStackTrace();
         }
     }
 

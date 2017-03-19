@@ -9,9 +9,7 @@ import org.junit.Test;
 import static com.thoughtworks.test.parser.ReadParser.HOW_MANY_IS_REGEX;
 import static com.thoughtworks.test.parser.ReadParser.HOW_MUCH_IS_REGEX;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class QuestionParserTest {
 

@@ -1,6 +1,5 @@
 package com.thoughtworks.test.number;
 
-import com.thoughtworks.test.number.DefaultRomanNumberCalculator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +7,7 @@ import java.util.Arrays;
 
 import static com.thoughtworks.test.number.RomanNumber.*;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class DefaultRomanNumberCalculatorTest {
 
