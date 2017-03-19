@@ -1,9 +1,9 @@
 package com.thoughtworks.test.question;
 
-import com.thoughtworks.test.DefaultRomanNumberCalculator;
-import com.thoughtworks.test.IntergalacticUnitToRomanNumbersMap;
-import com.thoughtworks.test.RomanNumber;
-import com.thoughtworks.test.RomanNumberCalculator;
+import com.thoughtworks.test.number.DefaultRomanNumberCalculator;
+import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
+import com.thoughtworks.test.number.RomanNumber;
+import com.thoughtworks.test.number.RomanNumberCalculator;
 import com.thoughtworks.test.parser.ParserException;
 import org.junit.Test;
 

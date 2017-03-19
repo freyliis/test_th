@@ -1,6 +1,5 @@
-package com.thoughtworks.test;
+package com.thoughtworks.test.number;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;

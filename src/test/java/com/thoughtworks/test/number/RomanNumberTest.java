@@ -1,5 +1,6 @@
-package com.thoughtworks.test;
+package com.thoughtworks.test.number;
 
+import com.thoughtworks.test.number.RomanNumber;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;

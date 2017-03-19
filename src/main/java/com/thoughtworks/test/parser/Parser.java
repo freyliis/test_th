@@ -1,7 +1,7 @@
 package com.thoughtworks.test.parser;
 
-import com.thoughtworks.test.IntergalacticUnitToRomanNumbersMap;
-import com.thoughtworks.test.RomanNumberCalculator;
+import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
+import com.thoughtworks.test.number.RomanNumberCalculator;
 import com.thoughtworks.test.resources.ResourcesRepository;
 
 import java.util.ArrayList;

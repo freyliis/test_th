@@ -1,8 +1,8 @@
 package com.thoughtworks.test.question;
 
-import com.thoughtworks.test.IntergalacticUnitToRomanNumbersMap;
-import com.thoughtworks.test.RomanNumber;
-import com.thoughtworks.test.RomanNumberCalculator;
+import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
+import com.thoughtworks.test.number.RomanNumber;
+import com.thoughtworks.test.number.RomanNumberCalculator;
 import com.thoughtworks.test.parser.ParserException;
 import com.thoughtworks.test.resources.Resource;
 import com.thoughtworks.test.resources.ResourcesRepository;

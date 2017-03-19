@@ -1,7 +1,7 @@
 package com.thoughtworks.test.parser;
 
-import com.thoughtworks.test.IntergalacticUnitToRomanNumbersMap;
-import com.thoughtworks.test.RomanNumber;
+import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
+import com.thoughtworks.test.number.RomanNumber;
 
 public class IntergalacticUnitToRomanNumberParser implements ReadParser {
 

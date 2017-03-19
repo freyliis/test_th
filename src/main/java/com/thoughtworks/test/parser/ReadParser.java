@@ -6,7 +6,7 @@ public interface ReadParser {
     String IS_REGEX = SEPARATOR + "is" + SEPARATOR;
     String CREDITS = "Credits";
     String HOW_MUCH_IS_REGEX = "how much" + IS_REGEX;
-    String HOW_MANY_IS_REGEX = "how many Credits" + IS_REGEX;
+    String HOW_MANY_IS_REGEX = "how many " + CREDITS + IS_REGEX;
 
 
     boolean parse(String inputText) throws ParserException;
