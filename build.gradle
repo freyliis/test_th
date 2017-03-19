@@ -15,6 +15,8 @@ dependencies {
 }
 
 mainClassName = "com.thoughtworks.test.Main"
-//run {
-//    args System.getProperty("sourcePath")
-//}
+run {
+    if(System.getProperty("sourcePath") != null) {
+        args System.getProperty("sourcePath")
+    }
+}

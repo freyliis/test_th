@@ -8,10 +8,7 @@ public class Main {
         Runner runner = new DefaultRunner();
         if (args.length == 1) {
             runner.run(args[0]);
-        } else {
-            runner.run("input.txt");
         }
-
     }
 
 }
