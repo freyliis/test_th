@@ -5,32 +5,37 @@ import com.thoughtworks.test.IntergalacticUnitToRomanNumbersMap;
 import com.thoughtworks.test.RomanNumber;
 import com.thoughtworks.test.RomanNumberCalculator;
 import com.thoughtworks.test.parser.ParserException;
+import com.thoughtworks.test.resources.Resource;
+import com.thoughtworks.test.resources.ResourcesInMemory;
+import com.thoughtworks.test.resources.ResourcesRepository;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
-public class HowMuchQuestionProcessorTest {
+public class HowManyQuestionProcessorTest {
+
 
     private RomanNumberCalculator romanNumberCalculator = new DefaultRomanNumberCalculator();
     private IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap = new IntergalacticUnitToRomanNumbersMap();
+    private ResourcesRepository resourcesRepository = new ResourcesInMemory();
 
     @Test(expected = ParserException.class)
     public void shouldThrowAnExceptionDueToMissingNumbers() throws ParserException {
-        String question = "pish tegj glob glob";
-        HowMuchQuestionProcessor objectUnderTest = new HowMuchQuestionProcessor(romanNumberCalculator, intergalacticUnitToRomanNumbersMap);
+        String question = "glob prok Silver";
+        HowManyQuestionProcessor objectUnderTest = new HowManyQuestionProcessor(romanNumberCalculator, intergalacticUnitToRomanNumbersMap, resourcesRepository);
         objectUnderTest.answerQuestion(question);
     }
 
     @Test
     public void shouldAnswerAQuestionWithExistingNumbers() throws ParserException {
-        intergalacticUnitToRomanNumbersMap.addIntergalacticUnitToRomanNumber("pish", RomanNumber.X);
-        intergalacticUnitToRomanNumbersMap.addIntergalacticUnitToRomanNumber("tegj", RomanNumber.L);
+        intergalacticUnitToRomanNumbersMap.addIntergalacticUnitToRomanNumber("prok", RomanNumber.V);
         intergalacticUnitToRomanNumbersMap.addIntergalacticUnitToRomanNumber("glob", RomanNumber.I);
-        String question = "pish tegj glob glob";
-        HowMuchQuestionProcessor objectUnderTest = new HowMuchQuestionProcessor(romanNumberCalculator, intergalacticUnitToRomanNumbersMap);
+        resourcesRepository.addResource(new Resource("Silver", 17d));
+        String question = "glob prok Silver";
+        HowManyQuestionProcessor objectUnderTest = new HowManyQuestionProcessor(romanNumberCalculator, intergalacticUnitToRomanNumbersMap, resourcesRepository);
         String result = objectUnderTest.answerQuestion(question);
-        assertThat(result, is("pish tegj glob glob is 42"));
+        assertThat(result, is("glob prok Silver is 68 Credits"));
     }
 
 }

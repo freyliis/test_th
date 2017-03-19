@@ -25,30 +25,36 @@ public class QuestionParserTest {
     @Test
     public void shouldReturnFalseIfQuestionHowMuchIsNotValid() throws ParserException {
         QuestionParser objectUnderTest = new QuestionParser(HOW_MUCH_IS_REGEX, results);
-        boolean result = objectUnderTest.parse("how many Credits is glob prok Silver ?");
+        String question = "glob prok Silver";
+        boolean result = objectUnderTest.parse(HOW_MANY_IS_REGEX + question + " ?");
         assertFalse(result);
     }
 
     @Test
     public void shouldReturnFalseIfQuestionHowManyIsNotValid() throws ParserException {
         QuestionParser objectUnderTest = new QuestionParser(HOW_MANY_IS_REGEX, results);
-        boolean result = objectUnderTest.parse("how much is pish ?");
+        String question = "pish";
+        boolean result = objectUnderTest.parse(HOW_MUCH_IS_REGEX + question + " ?");
         assertFalse(result);
     }
 
     @Test
     public void shouldReturnTrueIfQuestionHowMuchIsValid() throws ParserException {
         QuestionParser objectUnderTest = new QuestionParser(HOW_MUCH_IS_REGEX, results);
-        boolean result = objectUnderTest.parse("how much is pish ?");
+        String question = "pish";
+        boolean result = objectUnderTest.parse(HOW_MUCH_IS_REGEX + question + " ?");
         assertTrue(result);
         assertThat(results.size(), is(1));
+        assertThat(results.get(0), is(question));
     }
 
     @Test
     public void shouldReturnTrueIfQuestionHowManyIsValid() throws ParserException {
         QuestionParser objectUnderTest = new QuestionParser(HOW_MANY_IS_REGEX, results);
-        boolean result = objectUnderTest.parse("how many Credits is glob prok Silver ?");
+        String question = "glob prok Silver";
+        boolean result = objectUnderTest.parse(HOW_MANY_IS_REGEX + question + " ?");
         assertTrue(result);
         assertThat(results.size(), is(1));
+        assertThat(results.get(0), is(question));
     }
 }

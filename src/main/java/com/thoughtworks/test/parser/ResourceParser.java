@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ResourceParser implements ReadParser {
-    public static final String CREDITS = "Credits";
+
     private IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap;
     private ResourcesRepository resourcesRepository;
     private RomanNumberCalculator romanNumberCalculator;
@@ -40,7 +40,7 @@ public class ResourceParser implements ReadParser {
     }
 
     private String parseResourceName(String[] numbersAndResourceName, int indexOfResourceName) {
-        return String.join("\\s", Arrays.copyOfRange(numbersAndResourceName, indexOfResourceName, numbersAndResourceName.length));
+        return String.join(SEPARATOR, Arrays.copyOfRange(numbersAndResourceName, indexOfResourceName, numbersAndResourceName.length));
     }
 
     private int parseRomanNumbers(List<RomanNumber> romanNumbersInSequence, String[] numbersAndResourceName) {
