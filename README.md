@@ -30,5 +30,4 @@ there is a Parse Exception thrown and program ends.
 </li>
 <li>In the resource definition starting strings are parsed to Roman Numbers until there is unknown text. Then the rest is treated as resource name</li>
 <li>There can be many definitions of Roman Numbers in the input. The valid one is the last one</li>
-<li></li>
 </ul>
