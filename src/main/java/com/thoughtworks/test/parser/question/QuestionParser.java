@@ -1,7 +1,10 @@
-package com.thoughtworks.test.question;
+package com.thoughtworks.test.parser.question;
 
 import com.thoughtworks.test.parser.ParserException;
 import com.thoughtworks.test.parser.ReadParser;
+import com.thoughtworks.test.question.QuestionMap;
+
+import static com.thoughtworks.test.configuration.DefaultConfiguration.SEPARATOR;
 
 public class QuestionParser implements ReadParser {
 
@@ -13,7 +16,7 @@ public class QuestionParser implements ReadParser {
         this.questionMap = questionMap;
     }
 
-    public boolean parse(String inputText) throws ParserException {
+    public boolean parse(String inputText ) throws ParserException {
         if (inputText.matches(getQuestionRegex(questionRegex))) {
             String questionValues = inputText.replace(questionRegex, "").replace("?", "").trim();
             questionMap.addQuestion(questionRegex, questionValues);

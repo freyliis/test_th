@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static com.thoughtworks.test.parser.ReadParser.*;
+import static com.thoughtworks.test.configuration.DefaultConfiguration.*;
 
 public class HowManyQuestionProcessor implements QuestionProcessor {
 
@@ -41,7 +41,7 @@ public class HowManyQuestionProcessor implements QuestionProcessor {
     }
 
     private String formatAnswer(String question, String result) {
-        return question + IS_REGEX + result + SEPARATOR + CREDITS;
+        return question + IS + result + SEPARATOR + CREDITS;
     }
 
     private String parseResourceName(String[] numbersAndResourceName, int indexOfResourceName) {

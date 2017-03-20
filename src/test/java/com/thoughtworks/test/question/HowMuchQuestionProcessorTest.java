@@ -22,7 +22,7 @@ public class HowMuchQuestionProcessorTest {
     private IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap = new IntergalacticUnitToRomanNumbersMap();
 
     @Test
-    public void shouldThrowAnExceptionDueToMissingNumbers() throws ParserException {
+    public void shouldThrowAParseExceptionDueToMissingNumbers() throws ParserException {
         String question = "pish tegj glob glob";
         expectedException.expect(ParserException.class);
         expectedException.expectMessage(MESSAGE);

@@ -7,8 +7,8 @@ import com.thoughtworks.test.parser.ParserException;
 
 import java.util.List;
 
-import static com.thoughtworks.test.parser.ReadParser.IS_REGEX;
-import static com.thoughtworks.test.parser.ReadParser.SEPARATOR;
+import static com.thoughtworks.test.configuration.DefaultConfiguration.IS;
+import static com.thoughtworks.test.configuration.DefaultConfiguration.SEPARATOR;
 
 public class HowMuchQuestionProcessor implements QuestionProcessor {
 
@@ -32,6 +32,6 @@ public class HowMuchQuestionProcessor implements QuestionProcessor {
     }
 
     private String getAnswer(String question, String result) {
-        return question + IS_REGEX + result;
+        return question + IS + result;
     }
 }

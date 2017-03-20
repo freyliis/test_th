@@ -10,16 +10,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.thoughtworks.test.parser.ReadParser.HOW_MUCH_IS_REGEX;
+import static com.thoughtworks.test.configuration.DefaultConfiguration.HOW_MUCH_IS_REGEX;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class QuestionsProcessorTest {
+public class QuestionEngineTest {
 
     @Test
     public void shouldProcessEmptyQuestionMap() throws ParserException {
         Map<String, QuestionProcessor> processors = new HashMap<>();
-        QuestionsProcessor objectUnderTest = new QuestionsProcessor(processors);
+        QuestionEngine objectUnderTest = new QuestionEngine(processors);
         List<String> result = objectUnderTest.processQuestions(new QuestionMap());
         assertThat(result.size(), is(0));
     }
@@ -27,7 +27,7 @@ public class QuestionsProcessorTest {
     @Test
     public void shouldProcessQuestionMapButEmptyProcessorsMap() throws ParserException {
         Map<String, QuestionProcessor> processors = new HashMap<>();
-        QuestionsProcessor objectUnderTest = new QuestionsProcessor(processors);
+        QuestionEngine objectUnderTest = new QuestionEngine(processors);
         QuestionMap questionMap = new QuestionMap();
         questionMap.addQuestion(HOW_MUCH_IS_REGEX, "pish tegj glob glob");
         List<String> result = objectUnderTest.processQuestions(questionMap);
@@ -39,7 +39,7 @@ public class QuestionsProcessorTest {
     public void shouldProcessQuestionMapAndReturnDefaultAnswerDueToEmptyNumbers() throws ParserException {
         Map<String, QuestionProcessor> processors = new HashMap<>();
         processors.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(new DefaultRomanNumberCalculator(), new IntergalacticUnitToRomanNumbersMap()));
-        QuestionsProcessor objectUnderTest = new QuestionsProcessor(processors);
+        QuestionEngine objectUnderTest = new QuestionEngine(processors);
         QuestionMap questionMap = new QuestionMap();
         questionMap.addQuestion(HOW_MUCH_IS_REGEX, "pish tegj glob glob");
         List<String> result = objectUnderTest.processQuestions(questionMap);
@@ -55,7 +55,7 @@ public class QuestionsProcessorTest {
         intergalacticUnitToRomanNumbersMap.addIntergalacticUnitToRomanNumber("glob", RomanNumber.I);
         Map<String, QuestionProcessor> processors = new HashMap<>();
         processors.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(new DefaultRomanNumberCalculator(), intergalacticUnitToRomanNumbersMap));
-        QuestionsProcessor objectUnderTest = new QuestionsProcessor(processors);
+        QuestionEngine objectUnderTest = new QuestionEngine(processors);
         QuestionMap questionMap = new QuestionMap();
         questionMap.addQuestion(HOW_MUCH_IS_REGEX, "pish tegj glob glob");
         List<String> result = objectUnderTest.processQuestions(questionMap);

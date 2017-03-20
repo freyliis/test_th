@@ -1,13 +1,13 @@
 package com.thoughtworks.test.parser;
 
+import com.thoughtworks.test.parser.question.QuestionParser;
 import com.thoughtworks.test.question.QuestionMap;
-import com.thoughtworks.test.question.QuestionParser;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.thoughtworks.test.parser.ReadParser.HOW_MANY_IS_REGEX;
-import static com.thoughtworks.test.parser.ReadParser.HOW_MUCH_IS_REGEX;
+import static com.thoughtworks.test.configuration.DefaultConfiguration.HOW_MANY_IS_REGEX;
+import static com.thoughtworks.test.configuration.DefaultConfiguration.HOW_MUCH_IS_REGEX;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 

@@ -1,8 +1,8 @@
 package com.thoughtworks.test.parser;
 
-import com.thoughtworks.test.number.IntergalacticUnitToRomanNumberParser;
 import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
 import com.thoughtworks.test.number.RomanNumber;
+import com.thoughtworks.test.parser.definition.IntergalacticUnitToRomanNumberParser;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
@@ -26,6 +26,15 @@ public class IntergalacticUnitToRomanNumberParserTest {
         String glob = "glob";
         IntergalacticUnitToRomanNumberParser objectUnderTest = new IntergalacticUnitToRomanNumberParser(intergalacticUnitToRomanNumbersMap);
         boolean result = objectUnderTest.parse(glob + " is K");
+        assertFalse(result);
+    }
+
+    @Test
+    public void shouldNotParseGlobIsVV() {
+        IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap = new IntergalacticUnitToRomanNumbersMap();
+        String glob = "glob";
+        IntergalacticUnitToRomanNumberParser objectUnderTest = new IntergalacticUnitToRomanNumberParser(intergalacticUnitToRomanNumbersMap);
+        boolean result = objectUnderTest.parse(glob + " is VV");
         assertFalse(result);
     }
 

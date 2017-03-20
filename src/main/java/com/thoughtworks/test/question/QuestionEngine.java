@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class QuestionsProcessor {
+public class QuestionEngine {
 
     private final Map<String, QuestionProcessor> processors = new HashMap<>();
 
-    public QuestionsProcessor(Map<String, QuestionProcessor> processors) {
+    public QuestionEngine(Map<String, QuestionProcessor> processors) {
         this.processors.putAll(processors);
     }
 

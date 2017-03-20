@@ -1,8 +1,7 @@
 package com.thoughtworks.test.inputreader;
 
-import java.io.IOException;
-
 public interface InputReader {
 
-    String readInput(String source) throws IOException;
+    String readInput() throws ReadException;
+    boolean hasMoreInput() throws ReadException;
 }

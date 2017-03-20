@@ -15,7 +15,7 @@ public class DefaultRomanNumberCalculator implements RomanNumberCalculator {
                 repeatedNumberCounter++;
             } else if (previousNumber != null && currentValue > previousNumber.getValue()) {
                 if (repeatedNumberCounter > 1 || !currentNumber.canSubtract(previousNumber)) {
-                    throw new IllegalArgumentException();
+                    throw new IllegalArgumentException("Invalid Roman Number definition: " + RomanNumber.getRomanNumbersAsString(romanNumbers));
                 }
                 sum -= 2 * previousNumber.getValue();
             } else {
@@ -29,7 +29,7 @@ public class DefaultRomanNumberCalculator implements RomanNumberCalculator {
 
     private void canBeRepeated(int repeatedNumberCounter, RomanNumber currentNumber) {
         if (!currentNumber.canBeRepeated(repeatedNumberCounter)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format("Current number %1$s cannot be repeated %2$s.", currentNumber, repeatedNumberCounter));
         }
     }
 }
