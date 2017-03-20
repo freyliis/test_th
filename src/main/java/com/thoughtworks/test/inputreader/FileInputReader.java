@@ -10,14 +10,14 @@ public class FileInputReader implements InputReader {
     private List<String> lines;
     private int counter = 0;
 
-    public FileInputReader(String filePath) {
+    public FileInputReader(String filePath) throws ReadException {
         if (filePath == null || !Files.exists(Paths.get(filePath))) {
-            throw new IllegalArgumentException("File path cannot be null/empty and file has to exist. Wrong path file: " + filePath);
+            throw new ReadException("File path cannot be null/empty and file has to exist. Wrong path file: " + filePath);
         }
         try {
             lines = Files.lines(Paths.get(filePath)).collect(Collectors.toList());
         } catch (IOException e) {
-            throw new IllegalArgumentException("Issue with file", e);
+            throw new ReadException("Issue with file", e);
         }
     }
 
