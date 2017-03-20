@@ -16,7 +16,7 @@ public class IntergalacticUnitDictionary implements DefinitionDictionary<Interga
 
     private void checkIfNameIsUnique(String unitName) {
         Optional<IntergalacticUnit> first = intergalacticUnits.stream().filter(intergalacticUnit -> intergalacticUnit.getUnitName().equals(unitName)).findFirst();
-        if(first.isPresent()) {
+        if (first.isPresent()) {
             throw new IllegalArgumentException("Intergalactic name already exists: " + unitName);
         }
     }

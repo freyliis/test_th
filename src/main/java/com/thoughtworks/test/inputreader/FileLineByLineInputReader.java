@@ -39,7 +39,7 @@ public class FileLineByLineInputReader implements InputReader {
     public boolean hasMoreInput() throws ReadException {
         try {
             boolean hasMoreInput = (line = br.readLine()) != null;
-            if(!hasMoreInput) {
+            if (!hasMoreInput) {
                 br.close();
             }
             return hasMoreInput;

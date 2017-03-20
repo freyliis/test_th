@@ -3,7 +3,7 @@ package com.thoughtworks.test.definition;
 import java.util.List;
 import java.util.Optional;
 
-public interface DefinitionDictionary <T> {
+public interface DefinitionDictionary<T> {
 
     void addDefinition(T definition);
 

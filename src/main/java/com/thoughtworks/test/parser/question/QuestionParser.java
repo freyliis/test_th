@@ -17,7 +17,7 @@ public class QuestionParser implements ReadParser {
         this.questionMap = questionMap;
     }
 
-    public boolean parse(String inputText ) throws ParserException {
+    public boolean parse(String inputText) throws ParserException {
         if (inputText.matches(getQuestionRegex(questionRegex))) {
             String questionValues = inputText.replace(questionRegex, "").replace("?", "").trim();
             questionMap.addQuestion(new Question(questionRegex, questionValues));

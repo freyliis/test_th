@@ -1,20 +1,22 @@
 package com.thoughtworks.test.configuration;
 
 import com.thoughtworks.test.definition.DefinitionDictionary;
-import com.thoughtworks.test.romannumber.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
-import com.thoughtworks.test.romannumber.RomanNumberCalculator;
+import com.thoughtworks.test.definition.resource.ResourcesDictionary;
 import com.thoughtworks.test.parser.DefaultParserEngine;
 import com.thoughtworks.test.parser.ReadParser;
-import com.thoughtworks.test.parser.definition.ResourceDefinitionParser;
 import com.thoughtworks.test.parser.definition.IntergalacticUnitDefinitionParser;
+import com.thoughtworks.test.parser.definition.ResourceDefinitionParser;
 import com.thoughtworks.test.parser.question.QuestionParser;
-import com.thoughtworks.test.question.*;
+import com.thoughtworks.test.question.DefaultQuestionList;
+import com.thoughtworks.test.question.QuestionEngine;
+import com.thoughtworks.test.question.QuestionList;
 import com.thoughtworks.test.question.processor.HowManyQuestionProcessor;
 import com.thoughtworks.test.question.processor.HowMuchQuestionProcessor;
 import com.thoughtworks.test.question.processor.QuestionProcessor;
 import com.thoughtworks.test.question.processor.WrongQuestionProcessor;
-import com.thoughtworks.test.definition.resource.ResourcesDictionary;
+import com.thoughtworks.test.romannumber.DefaultRomanNumberCalculator;
+import com.thoughtworks.test.romannumber.RomanNumberCalculator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +37,7 @@ public class DefaultConfiguration implements Configuration {
     private IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
     private DefinitionDictionary resourcesRepository = new ResourcesDictionary();
 
-    public DefaultParserEngine createParserEngine(DefaultQuestionList questionMap) {
+    public DefaultParserEngine createParserEngine(QuestionList questionMap) {
         List<ReadParser> parsers = new ArrayList<>();
         parsers.add(new QuestionParser(HOW_MUCH_IS_REGEX, questionMap));
         parsers.add(new QuestionParser(HOW_MANY_IS_REGEX, questionMap));
@@ -52,4 +54,11 @@ public class DefaultConfiguration implements Configuration {
         questionProcessorMap.put("", new WrongQuestionProcessor());
         return new QuestionEngine(questionProcessorMap);
     }
+
+    @Override
+    public QuestionList createQuestionList() {
+        return new DefaultQuestionList();
+    }
+
+
 }
