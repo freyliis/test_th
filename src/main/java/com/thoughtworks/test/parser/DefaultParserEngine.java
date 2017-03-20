@@ -18,7 +18,7 @@ public class DefaultParserEngine implements ParserEngine {
         this.parsers = parsers;
     }
 
-    public void parseInput(InputReader inputReader) {
+    public void parseInput(InputReader inputReader) throws ParserException {
         String line = "";
         try {
             while (inputReader.hasMoreInput()) {
@@ -30,14 +30,10 @@ public class DefaultParserEngine implements ParserEngine {
         }
     }
 
-    private void parseLine(String line) {
+    private void parseLine(String line) throws ParserException {
         for (ReadParser parser : parsers) {
-            try {
-                if (parser.parse(line.trim())) {
-                    break;
-                }
-            } catch (ParserException e) {
-                LOGGER.log("Issue with parsing: " + line);
+            if (parser.parse(line.trim())) {
+                break;
             }
         }
     }

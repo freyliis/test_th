@@ -1,6 +1,6 @@
-package com.thoughtworks.test.parser;
+package com.thoughtworks.test.parser.question;
 
-import com.thoughtworks.test.parser.question.QuestionParser;
+import com.thoughtworks.test.parser.ParserException;
 import com.thoughtworks.test.question.DefaultQuestionList;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;

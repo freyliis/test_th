@@ -21,13 +21,14 @@ Assumptions:
          </ul>
 </ul>
 </li>
-<li>All input is first parsed then questions are answered. Int That case there can be many definitions but valid is the last one.</li>
+<li>All input is first parsed then questions are answered. Int That case there can be many definitions but valid is the first one.</li>
 <li>If the definition matches regex but input is invalid, like:
 <ul>
       <li>Invalid Roman Number</li>
+      <li>Duplicated Intergalactic Unit definition</li>
       <li>No integalactic unit in the resource definition</li>
 </ul>
-there is a Parse Exception thrown and program ends.
+there is a ParserException thrown and program ends.
 </li>
 <li>In the resource definition starting strings are parsed to Roman Numbers until there is unknown text. Then the rest is treated as resource name</li>
 <li></li>

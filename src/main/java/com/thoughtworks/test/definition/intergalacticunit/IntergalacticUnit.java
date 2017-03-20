@@ -20,4 +20,19 @@ public class IntergalacticUnit implements Definition {
     public RomanNumber getRomanNumber() {
         return romanNumber;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        IntergalacticUnit that = (IntergalacticUnit) o;
+
+        return romanNumber == that.romanNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return romanNumber != null ? romanNumber.hashCode() : 0;
+    }
 }

@@ -1,17 +1,17 @@
-package com.thoughtworks.test.question;
+package com.thoughtworks.test.question.processor;
 
 import com.thoughtworks.test.definition.DefinitionDictionary;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
-import com.thoughtworks.test.romannumber.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
+import com.thoughtworks.test.parser.ParserException;
+import com.thoughtworks.test.romannumber.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.romannumber.RomanNumber;
 import com.thoughtworks.test.romannumber.RomanNumberCalculator;
-import com.thoughtworks.test.parser.ParserException;
-import com.thoughtworks.test.question.processor.HowMuchQuestionProcessor;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static com.thoughtworks.test.configuration.DefaultConfiguration.MESSAGE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -26,9 +26,10 @@ public class HowMuchQuestionProcessorTest {
     @Test
     public void shouldThrowAParseExceptionDueToMissingNumbers() throws ParserException {
         String question = "pish tegj glob glob";
-        expectedException.expect(ParserException.class);
         HowMuchQuestionProcessor objectUnderTest = new HowMuchQuestionProcessor(romanNumberCalculator, intergalacticUnitDictionary);
-        objectUnderTest.answerQuestion(question);
+        String result = objectUnderTest.answerQuestion(question);
+        assertThat(result, is(MESSAGE));
+
     }
 
     @Test

@@ -1,19 +1,17 @@
-package com.thoughtworks.test.parser;
+package com.thoughtworks.test.parser.definition;
 
 import com.thoughtworks.test.definition.DefinitionDictionary;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
-import com.thoughtworks.test.romannumber.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
-import com.thoughtworks.test.romannumber.RomanNumber;
 import com.thoughtworks.test.definition.resource.Resource;
-import com.thoughtworks.test.parser.definition.ResourceDefinitionParser;
 import com.thoughtworks.test.definition.resource.ResourcesDictionary;
+import com.thoughtworks.test.parser.ParserException;
+import com.thoughtworks.test.romannumber.DefaultRomanNumberCalculator;
+import com.thoughtworks.test.romannumber.RomanNumber;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ResourceDefinitionParserTest {
 
@@ -22,7 +20,7 @@ public class ResourceDefinitionParserTest {
     private DefaultRomanNumberCalculator romanNumberCalculator = new DefaultRomanNumberCalculator();
 
     @Test
-    public void shouldParseGlobGlobSilverIs34CreditsToSilverWithPrice17() {
+    public void shouldParseGlobGlobSilverIs34CreditsToSilverWithPrice17() throws ParserException {
         intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("glob", RomanNumber.I));
         ResourceDefinitionParser objectUnderTest = new ResourceDefinitionParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
@@ -32,7 +30,7 @@ public class ResourceDefinitionParserTest {
     }
 
     @Test
-    public void shouldParsePishPishIronIs3910CreditsToIronWithPrice() {
+    public void shouldParsePishPishIronIs3910CreditsToIronWithPrice() throws ParserException {
         intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("pish", RomanNumber.X));
         ResourceDefinitionParser objectUnderTest = new ResourceDefinitionParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
@@ -41,8 +39,8 @@ public class ResourceDefinitionParserTest {
         assertThat(resourcesRepository.getDefinitionByKey("Iron").get().getPrice(), is(195.5));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldThrowAnExceptionDueToMissingIntergalacticUnit() {
+    @Test(expected = ParserException.class)
+    public void shouldThrowAnExceptionDueToMissingIntergalacticUnit() throws ParserException {
         intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("glob", RomanNumber.I));
         ResourceDefinitionParser objectUnderTest = new ResourceDefinitionParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
@@ -50,7 +48,7 @@ public class ResourceDefinitionParserTest {
     }
 
     @Test
-    public void shouldParseResourceWithMissingUnit() {
+    public void shouldParseResourceWithMissingUnit() throws ParserException {
         intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("glob", RomanNumber.I));
         ResourceDefinitionParser objectUnderTest = new ResourceDefinitionParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
@@ -59,7 +57,7 @@ public class ResourceDefinitionParserTest {
     }
 
     @Test
-    public void shouldThrowAnExceptionDueToWrongNumberOfCredits() {
+    public void shouldThrowAnExceptionDueToWrongNumberOfCredits() throws ParserException {
         intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("glob", RomanNumber.I));
         ResourceDefinitionParser objectUnderTest = new ResourceDefinitionParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);

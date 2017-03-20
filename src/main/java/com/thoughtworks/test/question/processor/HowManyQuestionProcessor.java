@@ -3,14 +3,13 @@ package com.thoughtworks.test.question.processor;
 import com.thoughtworks.test.definition.DefinitionDictionary;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
 import com.thoughtworks.test.definition.resource.Resource;
-import com.thoughtworks.test.romannumber.RomanNumber;
 import com.thoughtworks.test.romannumber.RomanNumberCalculator;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.thoughtworks.test.configuration.DefaultConfiguration.*;
 
@@ -31,13 +30,13 @@ public class HowManyQuestionProcessor implements QuestionProcessor {
     @Override
     public String answerQuestion(String question) {
         String[] numbersAndResourceName = question.split(SEPARATOR);
-        List<RomanNumber> romanNumbers = this.readRomanNumbers(intergalacticUnitDictionary, numbersAndResourceName);
-        String resourceName = parseResourceName(numbersAndResourceName, romanNumbers.size());
+        List<IntergalacticUnit> intergalacticUnits = intergalacticUnitDictionary.parseInput(numbersAndResourceName);
+        String resourceName = parseResourceName(numbersAndResourceName, intergalacticUnits.size());
         Optional<Resource> resourceByName = resourcesRepository.getDefinitionByKey(resourceName);
         if (!resourceByName.isPresent()) {
             return MESSAGE;
         }
-        int multiply = romanNumberCalculator.calculate(romanNumbers);
+        int multiply = romanNumberCalculator.calculate(intergalacticUnits.stream().map(IntergalacticUnit::getRomanNumber).collect(Collectors.toList()));
         return formatAnswer(question, format.format(multiply * resourceByName.get().getPrice()));
     }
 
@@ -49,17 +48,5 @@ public class HowManyQuestionProcessor implements QuestionProcessor {
         return String.join(SEPARATOR, Arrays.copyOfRange(numbersAndResourceName, indexOfResourceName, numbersAndResourceName.length));
     }
 
-    public List<RomanNumber> readRomanNumbers(DefinitionDictionary<IntergalacticUnit> romanNumberDefinitionDictionary, String[] numbersAndResourceName) {
-        List<RomanNumber> romanNumbersInSequence = new ArrayList<>();
-        for (String possibleNumber : numbersAndResourceName) {
-            Optional<IntergalacticUnit> intergalacticUnit = romanNumberDefinitionDictionary.getDefinitionByKey(possibleNumber);
-            if (intergalacticUnit.isPresent()) {
-                romanNumbersInSequence.add(intergalacticUnit.get().getRomanNumber());
-            } else {
-                break;
-            }
-        }
-        return romanNumbersInSequence;
-    }
 
 }

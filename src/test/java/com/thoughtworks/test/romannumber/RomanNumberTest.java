@@ -1,4 +1,4 @@
-package com.thoughtworks.test.number;
+package com.thoughtworks.test.romannumber;
 
 import com.thoughtworks.test.romannumber.RomanNumber;
 import org.junit.Test;

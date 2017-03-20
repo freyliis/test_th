@@ -2,12 +2,10 @@ package com.thoughtworks.test.question.processor;
 
 import com.thoughtworks.test.definition.DefinitionDictionary;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
-import com.thoughtworks.test.romannumber.RomanNumber;
 import com.thoughtworks.test.romannumber.RomanNumberCalculator;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.thoughtworks.test.configuration.DefaultConfiguration.*;
 
@@ -24,11 +22,11 @@ public class HowMuchQuestionProcessor implements QuestionProcessor {
     @Override
     public String answerQuestion(String question) {
         String[] numbers = question.split(SEPARATOR);
-        List<RomanNumber> romanNumbers = this.readRomanNumbers(intergalacticUnitDictionary, numbers);
-        if (romanNumbers.size() != numbers.length) {
+        List<IntergalacticUnit> intergalacticUnits = intergalacticUnitDictionary.parseInput(numbers);
+        if (intergalacticUnits.size() != numbers.length) {
             return MESSAGE;
         }
-        int result = romanNumberCalculator.calculate(romanNumbers);
+        int result = romanNumberCalculator.calculate(intergalacticUnits.stream().map(IntergalacticUnit::getRomanNumber).collect(Collectors.toList()));
         return getAnswer(question, Integer.toString(result));
     }
 
@@ -36,16 +34,4 @@ public class HowMuchQuestionProcessor implements QuestionProcessor {
         return question + IS + result;
     }
 
-    public List<RomanNumber> readRomanNumbers(DefinitionDictionary<IntergalacticUnit> romanNumberDefinitionDictionary, String[] numbersAndResourceName) {
-        List<RomanNumber> romanNumbersInSequence = new ArrayList<>();
-        for (String possibleNumber : numbersAndResourceName) {
-            Optional<IntergalacticUnit> intergalacticUnit = romanNumberDefinitionDictionary.getDefinitionByKey(possibleNumber);
-            if (intergalacticUnit.isPresent()) {
-                romanNumbersInSequence.add(intergalacticUnit.get().getRomanNumber());
-            } else {
-                break;
-            }
-        }
-        return romanNumbersInSequence;
-    }
 }

@@ -1,17 +1,17 @@
-package com.thoughtworks.test.parser;
+package com.thoughtworks.test.parser.definition;
 
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
+import com.thoughtworks.test.parser.ParserException;
 import com.thoughtworks.test.romannumber.RomanNumber;
-import com.thoughtworks.test.parser.definition.IntergalacticUnitDefinitionParser;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class IntergalacticUnitToRomanNumberParserTest {
+public class IntergalacticUnitDefinitionParserTest {
 
     @Test
-    public void shouldParseGlobAsI() {
+    public void shouldParseGlobAsI() throws ParserException {
         IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         String glob = "glob";
         IntergalacticUnitDefinitionParser objectUnderTest = new IntergalacticUnitDefinitionParser(intergalacticUnitDictionary);
@@ -20,8 +20,8 @@ public class IntergalacticUnitToRomanNumberParserTest {
         assertThat(intergalacticUnitDictionary.getDefinitionByKey(glob).get().getRomanNumber(), CoreMatchers.is(RomanNumber.I));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldNotParseGlobAsK() {
+    @Test(expected = ParserException.class)
+    public void shouldNotParseGlobAsK() throws ParserException {
         IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         String glob = "glob";
         IntergalacticUnitDefinitionParser objectUnderTest = new IntergalacticUnitDefinitionParser(intergalacticUnitDictionary);
@@ -30,7 +30,7 @@ public class IntergalacticUnitToRomanNumberParserTest {
     }
 
     @Test
-    public void shouldNotParseGlobIsVV() {
+    public void shouldNotParseGlobIsVV() throws ParserException {
         IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         String glob = "glob";
         IntergalacticUnitDefinitionParser objectUnderTest = new IntergalacticUnitDefinitionParser(intergalacticUnitDictionary);

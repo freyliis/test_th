@@ -7,6 +7,7 @@ import com.thoughtworks.test.inputreader.InputReader;
 import com.thoughtworks.test.inputreader.ReadException;
 import com.thoughtworks.test.outputwriter.ConsoleOutputWriter;
 import com.thoughtworks.test.outputwriter.OutputWriter;
+import com.thoughtworks.test.parser.ParserException;
 import com.thoughtworks.test.question.DefaultQuestionList;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class DefaultRunner implements Runner {
             configuration.createParserEngine(questionMap).parseInput(inputReader);
             List<String> processedQuestions = configuration.createQuestionEngine().processQuestions(questionMap);
             outputWriter.writeOutput(processedQuestions);
-        } catch (ReadException e) {
+        } catch (ReadException |ParserException e) {
             LOGGER.logError(e.getMessage());
         }
 

@@ -4,5 +4,5 @@ import com.thoughtworks.test.inputreader.InputReader;
 
 public interface ParserEngine {
 
-    void parseInput(InputReader inputReader);
+    void parseInput(InputReader inputReader) throws ParserException;
 }

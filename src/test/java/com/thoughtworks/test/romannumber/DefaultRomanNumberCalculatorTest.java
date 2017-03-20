@@ -1,6 +1,5 @@
-package com.thoughtworks.test.number;
+package com.thoughtworks.test.romannumber;
 
-import com.thoughtworks.test.romannumber.DefaultRomanNumberCalculator;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -2,43 +2,43 @@ package com.thoughtworks.test.parser.definition;
 
 import com.thoughtworks.test.definition.DefinitionDictionary;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
-import com.thoughtworks.test.romannumber.RomanNumber;
-import com.thoughtworks.test.romannumber.RomanNumberCalculator;
 import com.thoughtworks.test.definition.resource.Resource;
+import com.thoughtworks.test.parser.ParserException;
 import com.thoughtworks.test.parser.ReadParser;
+import com.thoughtworks.test.romannumber.RomanNumberCalculator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.thoughtworks.test.configuration.DefaultConfiguration.*;
 
 public class ResourceDefinitionParser implements ReadParser {
 
-    private DefinitionDictionary intergalacticUnitDictionary;
-    private DefinitionDictionary resourcesRepository;
+    private DefinitionDictionary<IntergalacticUnit> intergalacticUnitDictionary;
+    private DefinitionDictionary<Resource> resourcesRepository;
     private RomanNumberCalculator romanNumberCalculator;
 
-    public ResourceDefinitionParser(DefinitionDictionary intergalacticUnitDictionary, DefinitionDictionary resourcesRepository, RomanNumberCalculator romanNumberCalculator) {
+    public ResourceDefinitionParser(DefinitionDictionary<IntergalacticUnit> intergalacticUnitDictionary,
+                                    DefinitionDictionary<Resource> resourcesRepository, RomanNumberCalculator romanNumberCalculator) {
         this.intergalacticUnitDictionary = intergalacticUnitDictionary;
         this.resourcesRepository = resourcesRepository;
         this.romanNumberCalculator = romanNumberCalculator;
     }
 
-    public boolean parse(String inputText) {
+    public boolean parse(String inputText) throws ParserException {
         if (inputText.matches(RESOURCE_DEFINITION_REGEX)) {
             String[] split = inputText.split(IS);
             String[] numbersAndResourceName = split[0].split(SEPARATOR);
-            List<RomanNumber> romanNumbersInSequence = readRomanNumbers(intergalacticUnitDictionary, numbersAndResourceName);
-            if (romanNumbersInSequence.size() > 0) {
-                String resourceName = parseResourceName(numbersAndResourceName, romanNumbersInSequence.size());
+            List<IntergalacticUnit> intergalacticUnits = intergalacticUnitDictionary.parseInput(numbersAndResourceName);
+            if (intergalacticUnits.size() > 0) {
+                String resourceName = parseResourceName(numbersAndResourceName, intergalacticUnits.size());
                 double totalPrice = getTotalPrice(split[1]);
-                double resourcePrice = totalPrice / romanNumberCalculator.calculate(romanNumbersInSequence);
+                double resourcePrice = totalPrice / romanNumberCalculator.calculate(intergalacticUnits.stream().map(IntergalacticUnit::getRomanNumber).collect(Collectors.toList()));
                 resourcesRepository.addDefinition(new Resource(resourceName, resourcePrice));
                 return true;
             } else {
-                throw new IllegalArgumentException("There are no proper numbers in the input: " + inputText);
+                throw new ParserException("There are no proper numbers in the input: " + inputText);
             }
         }
         return false;
@@ -52,16 +52,4 @@ public class ResourceDefinitionParser implements ReadParser {
         return Double.parseDouble(inputText.replace(CREDITS, "").trim());
     }
 
-    public List<RomanNumber> readRomanNumbers(DefinitionDictionary<IntergalacticUnit> romanNumberDefinitionDictionary, String[] numbersAndResourceName) {
-        List<RomanNumber> romanNumbersInSequence = new ArrayList<>();
-        for (String possibleNumber : numbersAndResourceName) {
-            Optional<IntergalacticUnit> intergalacticUnit = romanNumberDefinitionDictionary.getDefinitionByKey(possibleNumber);
-            if (intergalacticUnit.isPresent()) {
-                romanNumbersInSequence.add(intergalacticUnit.get().getRomanNumber());
-            } else {
-                break;
-            }
-        }
-        return romanNumbersInSequence;
-    }
 }
