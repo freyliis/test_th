@@ -21,7 +21,8 @@ Assumptions:
          </ul>
 </ul>
 </li>
-<li>All input is first parsed then questions are answered. Int That case there can be many definitions but valid is the first one.</li>
+<li>Every line is checked with regex. If does not match, the answer is default one. </li>
+<li>All the input is fully parsed then the questions are answered. In that case there can be many definitions but valid is the first one.</li>
 <li>If the definition matches regex but input is invalid, like:
 <ul>
       <li>Invalid Roman Number</li>
@@ -32,4 +33,10 @@ there is a ParserException thrown and program ends.
 </li>
 <li>In the resource definition starting strings are parsed to Roman Numbers until there is unknown text. Then the rest is treated as resource name</li>
 <li></li>
+</ul>
+Design:
+<ul>
+<li>The main idea is to have easy way of adding new parsers and processors so all logic is hidden in the implementations.
+Due to this solution the input text line has to visit every parser to find correct one.</li>
+<li>For question processors there is a map, evey new question has a regexp for parser and then it is used as a key in processors.</li>
 </ul>

@@ -1,6 +1,6 @@
 package com.thoughtworks.test.parser;
 
-import com.thoughtworks.test.Logger;
+import com.thoughtworks.test.simplelogger.Logger;
 import com.thoughtworks.test.inputreader.InputReader;
 import com.thoughtworks.test.inputreader.ReadException;
 

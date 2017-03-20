@@ -1,4 +1,4 @@
-package com.thoughtworks.test;
+package com.thoughtworks.test.simplelogger;
 
 public class Logger {
 

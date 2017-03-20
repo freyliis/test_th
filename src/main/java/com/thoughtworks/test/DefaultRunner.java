@@ -9,6 +9,7 @@ import com.thoughtworks.test.outputwriter.ConsoleOutputWriter;
 import com.thoughtworks.test.outputwriter.OutputWriter;
 import com.thoughtworks.test.parser.ParserException;
 import com.thoughtworks.test.question.QuestionList;
+import com.thoughtworks.test.simplelogger.Logger;
 
 import java.util.List;
 
