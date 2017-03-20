@@ -2,7 +2,8 @@ package com.thoughtworks.test.question;
 
 import com.thoughtworks.test.parser.ParserException;
 
-import static com.thoughtworks.test.parser.ParserException.MESSAGE;
+import static com.thoughtworks.test.configuration.DefaultConfiguration.MESSAGE;
+
 
 public class WrongQuestionProcessor implements QuestionProcessor {
     @Override

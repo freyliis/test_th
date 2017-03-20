@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.thoughtworks.test.configuration.DefaultConfiguration.MESSAGE;
+
 public class QuestionEngine {
 
     private final Map<String, QuestionProcessor> processors = new HashMap<>();
@@ -22,7 +24,7 @@ public class QuestionEngine {
             try {
                 answers.add(getQuestionProcessor(question).answerQuestion(question.getQuestionText()));
             } catch (ParserException e) {
-                answers.add(e.getMessage());
+                answers.add(MESSAGE);
             }
         return answers;
     }

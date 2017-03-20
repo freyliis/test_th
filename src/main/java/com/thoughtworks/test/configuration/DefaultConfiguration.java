@@ -26,11 +26,12 @@ public class DefaultConfiguration implements Configuration {
     public static final String RESOURCE_DEFINITION_REGEX = "^.+" + IS + "\\d+" + SEPARATOR + CREDITS + "$";
     public static final String HOW_MUCH_IS_REGEX = "how much" + IS;
     public static final String HOW_MANY_IS_REGEX = "how many " + CREDITS + IS;
+    public final static String MESSAGE = "I have no idea what you are talking about";
     private RomanNumberCalculator romanNumberCalculator = new DefaultRomanNumberCalculator();
     private IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap = new IntergalacticUnitToRomanNumbersMap();
     private ResourcesRepository resourcesRepository = new ResourcesInMemory();
 
-    public DefaultParserEngine getParserEngine(QuestionMap questionMap) {
+    public DefaultParserEngine createParserEngine(QuestionMap questionMap) {
         List<ReadParser> parsers = new ArrayList<>();
         parsers.add(new QuestionParser(HOW_MUCH_IS_REGEX, questionMap));
         parsers.add(new QuestionParser(HOW_MANY_IS_REGEX, questionMap));
@@ -40,7 +41,7 @@ public class DefaultConfiguration implements Configuration {
         return new DefaultParserEngine(parsers);
     }
 
-    public QuestionEngine getQuestionsProcessor() {
+    public QuestionEngine createQuestionEngine() {
         Map<String, QuestionProcessor> questionProcessorMap = new HashMap<>();
         questionProcessorMap.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(romanNumberCalculator, intergalacticUnitToRomanNumbersMap));
         questionProcessorMap.put(HOW_MANY_IS_REGEX, new HowManyQuestionProcessor(romanNumberCalculator, intergalacticUnitToRomanNumbersMap, resourcesRepository));

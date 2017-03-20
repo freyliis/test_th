@@ -1,12 +1,12 @@
 package com.thoughtworks.test.configuration;
 
-import com.thoughtworks.test.parser.DefaultParserEngine;
-import com.thoughtworks.test.question.QuestionMap;
+import com.thoughtworks.test.parser.ParserEngine;
 import com.thoughtworks.test.question.QuestionEngine;
+import com.thoughtworks.test.question.QuestionMap;
 
 public interface Configuration {
 
-    DefaultParserEngine getParserEngine(QuestionMap questionMap);
+    ParserEngine createParserEngine(QuestionMap questionMap);
 
-    QuestionEngine getQuestionsProcessor();
+    QuestionEngine createQuestionEngine();
 }

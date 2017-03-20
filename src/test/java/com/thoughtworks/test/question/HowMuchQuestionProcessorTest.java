@@ -9,7 +9,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static com.thoughtworks.test.parser.ParserException.MESSAGE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -25,7 +24,6 @@ public class HowMuchQuestionProcessorTest {
     public void shouldThrowAParseExceptionDueToMissingNumbers() throws ParserException {
         String question = "pish tegj glob glob";
         expectedException.expect(ParserException.class);
-        expectedException.expectMessage(MESSAGE);
         HowMuchQuestionProcessor objectUnderTest = new HowMuchQuestionProcessor(romanNumberCalculator, intergalacticUnitToRomanNumbersMap);
         objectUnderTest.answerQuestion(question);
     }

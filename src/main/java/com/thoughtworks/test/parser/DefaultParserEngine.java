@@ -12,6 +12,9 @@ public class DefaultParserEngine implements ParserEngine {
     private final List<ReadParser> parsers;
 
     public DefaultParserEngine(List<ReadParser> parsers) {
+        if (parsers == null) {
+            throw new IllegalArgumentException("List of parsers cannot be null");
+        }
         this.parsers = parsers;
     }
 

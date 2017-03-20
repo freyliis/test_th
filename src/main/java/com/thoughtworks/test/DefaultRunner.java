@@ -21,8 +21,8 @@ public class DefaultRunner implements Runner {
     public void run(String source) {
         try {
             InputReader inputReader = new FileLineByLineInputReader(source);
-            configuration.getParserEngine(questionMap).parseInput(inputReader);
-            List<String> processedQuestions = configuration.getQuestionsProcessor().processQuestions(questionMap);
+            configuration.createParserEngine(questionMap).parseInput(inputReader);
+            List<String> processedQuestions = configuration.createQuestionEngine().processQuestions(questionMap);
             outputWriter.writeOutput(processedQuestions);
         } catch (ReadException e) {
             LOGGER.logError(e.getMessage());
