@@ -32,6 +32,14 @@ public class FileLineByLineInputReaderTest {
         new FileLineByLineInputReader("file");
     }
 
+
+    @Test(expected = ReadException.class)
+    public void shouldThrowAnExceptionForDirectory() throws IOException, ReadException {
+        File testFile = temporaryFolder.newFolder("testfile");
+        new FileLineByLineInputReader(testFile.getAbsolutePath());
+    }
+
+
     @Test
     public void shouldReturnFalseForEmptyFile() throws ReadException, IOException {
         File testFile = temporaryFolder.newFile("testfile");
