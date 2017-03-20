@@ -2,7 +2,7 @@ package com.thoughtworks.test.parser.definition;
 
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
-import com.thoughtworks.test.definition.number.RomanNumber;
+import com.thoughtworks.test.romannumber.RomanNumber;
 import com.thoughtworks.test.parser.ReadParser;
 
 import static com.thoughtworks.test.configuration.DefaultConfiguration.IS;

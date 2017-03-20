@@ -1,12 +1,12 @@
 package com.thoughtworks.test.number;
 
-import com.thoughtworks.test.definition.number.DefaultRomanNumberCalculator;
+import com.thoughtworks.test.romannumber.DefaultRomanNumberCalculator;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
 
-import static com.thoughtworks.test.definition.number.RomanNumber.*;
+import static com.thoughtworks.test.romannumber.RomanNumber.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 

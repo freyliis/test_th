@@ -1,7 +1,7 @@
 package com.thoughtworks.test.parser;
 
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
-import com.thoughtworks.test.definition.number.RomanNumber;
+import com.thoughtworks.test.romannumber.RomanNumber;
 import com.thoughtworks.test.parser.definition.IntergalacticUnitToRomanNumberParser;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;

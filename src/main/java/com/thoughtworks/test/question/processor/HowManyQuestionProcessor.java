@@ -2,8 +2,8 @@ package com.thoughtworks.test.question.processor;
 
 import com.thoughtworks.test.definition.DefinitionDictionary;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
-import com.thoughtworks.test.definition.number.RomanNumber;
-import com.thoughtworks.test.definition.number.RomanNumberCalculator;
+import com.thoughtworks.test.romannumber.RomanNumber;
+import com.thoughtworks.test.romannumber.RomanNumberCalculator;
 import com.thoughtworks.test.definition.resource.Resource;
 import com.thoughtworks.test.parser.ParserException;
 

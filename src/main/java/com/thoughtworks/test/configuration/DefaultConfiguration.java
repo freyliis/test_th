@@ -1,9 +1,9 @@
 package com.thoughtworks.test.configuration;
 
 import com.thoughtworks.test.definition.DefinitionDictionary;
-import com.thoughtworks.test.definition.number.DefaultRomanNumberCalculator;
+import com.thoughtworks.test.romannumber.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
-import com.thoughtworks.test.definition.number.RomanNumberCalculator;
+import com.thoughtworks.test.romannumber.RomanNumberCalculator;
 import com.thoughtworks.test.parser.DefaultParserEngine;
 import com.thoughtworks.test.parser.ReadParser;
 import com.thoughtworks.test.parser.definition.ResourceParser;
