@@ -1,6 +1,7 @@
 package com.thoughtworks.test.question;
 
 import com.thoughtworks.test.parser.ParserException;
+import com.thoughtworks.test.question.processor.QuestionProcessor;
 
 import java.util.ArrayList;
 import java.util.HashMap;

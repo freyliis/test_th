@@ -1,9 +1,12 @@
 package com.thoughtworks.test.question;
 
-import com.thoughtworks.test.number.DefaultRomanNumberCalculator;
-import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
-import com.thoughtworks.test.number.RomanNumber;
+import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
+import com.thoughtworks.test.definition.number.DefaultRomanNumberCalculator;
+import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
+import com.thoughtworks.test.definition.number.RomanNumber;
 import com.thoughtworks.test.parser.ParserException;
+import com.thoughtworks.test.question.processor.HowMuchQuestionProcessor;
+import com.thoughtworks.test.question.processor.QuestionProcessor;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -38,7 +41,7 @@ public class QuestionEngineTest {
     @Test
     public void shouldProcessQuestionMapAndReturnDefaultAnswerDueToEmptyNumbers() throws ParserException {
         Map<String, QuestionProcessor> processors = new HashMap<>();
-        processors.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(new DefaultRomanNumberCalculator(), new IntergalacticUnitToRomanNumbersMap()));
+        processors.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(new DefaultRomanNumberCalculator(), new IntergalacticUnitDictionary()));
         QuestionEngine objectUnderTest = new QuestionEngine(processors);
         QuestionMap questionMap = new QuestionMap();
         questionMap.addQuestion(HOW_MUCH_IS_REGEX, "pish tegj glob glob");
@@ -49,12 +52,12 @@ public class QuestionEngineTest {
 
     @Test
     public void shouldProcessQuestionMapAndReturnAnswer() throws ParserException {
-        IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap = new IntergalacticUnitToRomanNumbersMap();
-        intergalacticUnitToRomanNumbersMap.addIntergalacticUnitToRomanNumber("pish", RomanNumber.X);
-        intergalacticUnitToRomanNumbersMap.addIntergalacticUnitToRomanNumber("tegj", RomanNumber.L);
-        intergalacticUnitToRomanNumbersMap.addIntergalacticUnitToRomanNumber("glob", RomanNumber.I);
+        IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
+        intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("pish", RomanNumber.X));
+        intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("tegj", RomanNumber.L));
+        intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("glob", RomanNumber.I));
         Map<String, QuestionProcessor> processors = new HashMap<>();
-        processors.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(new DefaultRomanNumberCalculator(), intergalacticUnitToRomanNumbersMap));
+        processors.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(new DefaultRomanNumberCalculator(), intergalacticUnitDictionary));
         QuestionEngine objectUnderTest = new QuestionEngine(processors);
         QuestionMap questionMap = new QuestionMap();
         questionMap.addQuestion(HOW_MUCH_IS_REGEX, "pish tegj glob glob");

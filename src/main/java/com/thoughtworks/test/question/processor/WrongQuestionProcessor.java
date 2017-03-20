@@ -1,4 +1,4 @@
-package com.thoughtworks.test.question;
+package com.thoughtworks.test.question.processor;
 
 import com.thoughtworks.test.parser.ParserException;
 

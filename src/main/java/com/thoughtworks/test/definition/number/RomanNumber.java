@@ -1,4 +1,4 @@
-package com.thoughtworks.test.number;
+package com.thoughtworks.test.definition.number;
 
 import java.util.Collections;
 import java.util.List;

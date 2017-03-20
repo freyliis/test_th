@@ -1,7 +1,7 @@
 package com.thoughtworks.test.parser;
 
-import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
-import com.thoughtworks.test.number.RomanNumber;
+import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
+import com.thoughtworks.test.definition.number.RomanNumber;
 import com.thoughtworks.test.parser.definition.IntergalacticUnitToRomanNumberParser;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
@@ -12,28 +12,28 @@ public class IntergalacticUnitToRomanNumberParserTest {
 
     @Test
     public void shouldParseGlobAsI() {
-        IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap = new IntergalacticUnitToRomanNumbersMap();
+        IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         String glob = "glob";
-        IntergalacticUnitToRomanNumberParser objectUnderTest = new IntergalacticUnitToRomanNumberParser(intergalacticUnitToRomanNumbersMap);
+        IntergalacticUnitToRomanNumberParser objectUnderTest = new IntergalacticUnitToRomanNumberParser(intergalacticUnitDictionary);
         boolean result = objectUnderTest.parse("glob is I");
         assertTrue(result);
-        assertThat(intergalacticUnitToRomanNumbersMap.getRomanNumberForIntergalacticUnit(glob).get(), CoreMatchers.is(RomanNumber.I));
+        assertThat(intergalacticUnitDictionary.getDefinitionByKey(glob).get().getRomanNumber(), CoreMatchers.is(RomanNumber.I));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldNotParseGlobAsK() {
-        IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap = new IntergalacticUnitToRomanNumbersMap();
+        IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         String glob = "glob";
-        IntergalacticUnitToRomanNumberParser objectUnderTest = new IntergalacticUnitToRomanNumberParser(intergalacticUnitToRomanNumbersMap);
+        IntergalacticUnitToRomanNumberParser objectUnderTest = new IntergalacticUnitToRomanNumberParser(intergalacticUnitDictionary);
         boolean result = objectUnderTest.parse(glob + " is K");
         assertFalse(result);
     }
 
     @Test
     public void shouldNotParseGlobIsVV() {
-        IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap = new IntergalacticUnitToRomanNumbersMap();
+        IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         String glob = "glob";
-        IntergalacticUnitToRomanNumberParser objectUnderTest = new IntergalacticUnitToRomanNumberParser(intergalacticUnitToRomanNumbersMap);
+        IntergalacticUnitToRomanNumberParser objectUnderTest = new IntergalacticUnitToRomanNumberParser(intergalacticUnitDictionary);
         boolean result = objectUnderTest.parse(glob + " is VV");
         assertFalse(result);
     }

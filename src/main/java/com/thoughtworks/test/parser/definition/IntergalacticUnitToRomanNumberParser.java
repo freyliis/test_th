@@ -1,7 +1,8 @@
 package com.thoughtworks.test.parser.definition;
 
-import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
-import com.thoughtworks.test.number.RomanNumber;
+import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
+import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
+import com.thoughtworks.test.definition.number.RomanNumber;
 import com.thoughtworks.test.parser.ReadParser;
 
 import static com.thoughtworks.test.configuration.DefaultConfiguration.IS;
@@ -9,10 +10,10 @@ import static com.thoughtworks.test.configuration.DefaultConfiguration.NUMBER_DE
 
 public class IntergalacticUnitToRomanNumberParser implements ReadParser {
 
-    private IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap;
+    private IntergalacticUnitDictionary intergalacticUnitDictionary;
 
-    public IntergalacticUnitToRomanNumberParser(IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap) {
-        this.intergalacticUnitToRomanNumbersMap = intergalacticUnitToRomanNumbersMap;
+    public IntergalacticUnitToRomanNumberParser(IntergalacticUnitDictionary intergalacticUnitDictionary) {
+        this.intergalacticUnitDictionary = intergalacticUnitDictionary;
     }
 
     public boolean parse(String inputText) {
@@ -20,7 +21,7 @@ public class IntergalacticUnitToRomanNumberParser implements ReadParser {
             String[] split = inputText.split(IS);
             String intergalacticUnit = split[0].trim();
             RomanNumber romanNumber = RomanNumber.valueOf(split[1].trim());
-            intergalacticUnitToRomanNumbersMap.addIntergalacticUnitToRomanNumber(intergalacticUnit, romanNumber);
+            intergalacticUnitDictionary.addDefinition(new IntergalacticUnit(intergalacticUnit, romanNumber));
             return true;
         }
         return false;

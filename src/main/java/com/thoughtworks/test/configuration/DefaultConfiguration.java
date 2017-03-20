@@ -1,16 +1,20 @@
 package com.thoughtworks.test.configuration;
 
-import com.thoughtworks.test.number.DefaultRomanNumberCalculator;
-import com.thoughtworks.test.number.IntergalacticUnitToRomanNumbersMap;
-import com.thoughtworks.test.number.RomanNumberCalculator;
+import com.thoughtworks.test.definition.DefinitionDictionary;
+import com.thoughtworks.test.definition.number.DefaultRomanNumberCalculator;
+import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
+import com.thoughtworks.test.definition.number.RomanNumberCalculator;
 import com.thoughtworks.test.parser.DefaultParserEngine;
 import com.thoughtworks.test.parser.ReadParser;
 import com.thoughtworks.test.parser.definition.ResourceParser;
 import com.thoughtworks.test.parser.definition.IntergalacticUnitToRomanNumberParser;
 import com.thoughtworks.test.parser.question.QuestionParser;
 import com.thoughtworks.test.question.*;
-import com.thoughtworks.test.resources.ResourcesInMemory;
-import com.thoughtworks.test.resources.ResourcesRepository;
+import com.thoughtworks.test.question.processor.HowManyQuestionProcessor;
+import com.thoughtworks.test.question.processor.HowMuchQuestionProcessor;
+import com.thoughtworks.test.question.processor.QuestionProcessor;
+import com.thoughtworks.test.question.processor.WrongQuestionProcessor;
+import com.thoughtworks.test.definition.resource.ResourcesDictionary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,23 +32,23 @@ public class DefaultConfiguration implements Configuration {
     public static final String HOW_MANY_IS_REGEX = "how many " + CREDITS + IS;
     public final static String MESSAGE = "I have no idea what you are talking about";
     private RomanNumberCalculator romanNumberCalculator = new DefaultRomanNumberCalculator();
-    private IntergalacticUnitToRomanNumbersMap intergalacticUnitToRomanNumbersMap = new IntergalacticUnitToRomanNumbersMap();
-    private ResourcesRepository resourcesRepository = new ResourcesInMemory();
+    private IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
+    private DefinitionDictionary resourcesRepository = new ResourcesDictionary();
 
     public DefaultParserEngine createParserEngine(QuestionMap questionMap) {
         List<ReadParser> parsers = new ArrayList<>();
         parsers.add(new QuestionParser(HOW_MUCH_IS_REGEX, questionMap));
         parsers.add(new QuestionParser(HOW_MANY_IS_REGEX, questionMap));
-        parsers.add(new ResourceParser(intergalacticUnitToRomanNumbersMap, resourcesRepository, romanNumberCalculator));
-        parsers.add(new IntergalacticUnitToRomanNumberParser(intergalacticUnitToRomanNumbersMap));
+        parsers.add(new ResourceParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator));
+        parsers.add(new IntergalacticUnitToRomanNumberParser(intergalacticUnitDictionary));
         parsers.add(new QuestionParser("", questionMap));
         return new DefaultParserEngine(parsers);
     }
 
     public QuestionEngine createQuestionEngine() {
         Map<String, QuestionProcessor> questionProcessorMap = new HashMap<>();
-        questionProcessorMap.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(romanNumberCalculator, intergalacticUnitToRomanNumbersMap));
-        questionProcessorMap.put(HOW_MANY_IS_REGEX, new HowManyQuestionProcessor(romanNumberCalculator, intergalacticUnitToRomanNumbersMap, resourcesRepository));
+        questionProcessorMap.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(romanNumberCalculator, intergalacticUnitDictionary));
+        questionProcessorMap.put(HOW_MANY_IS_REGEX, new HowManyQuestionProcessor(romanNumberCalculator, intergalacticUnitDictionary, resourcesRepository));
         questionProcessorMap.put("", new WrongQuestionProcessor());
         return new QuestionEngine(questionProcessorMap);
     }

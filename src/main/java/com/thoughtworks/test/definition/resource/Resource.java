@@ -1,4 +1,4 @@
-package com.thoughtworks.test.resources;
+package com.thoughtworks.test.definition.resource;
 
 public class Resource {
     private String name;
