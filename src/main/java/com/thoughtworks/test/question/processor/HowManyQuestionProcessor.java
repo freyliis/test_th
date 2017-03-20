@@ -2,10 +2,9 @@ package com.thoughtworks.test.question.processor;
 
 import com.thoughtworks.test.definition.DefinitionDictionary;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
+import com.thoughtworks.test.definition.resource.Resource;
 import com.thoughtworks.test.romannumber.RomanNumber;
 import com.thoughtworks.test.romannumber.RomanNumberCalculator;
-import com.thoughtworks.test.definition.resource.Resource;
-import com.thoughtworks.test.parser.ParserException;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -30,13 +29,13 @@ public class HowManyQuestionProcessor implements QuestionProcessor {
     }
 
     @Override
-    public String answerQuestion(String question) throws ParserException {
+    public String answerQuestion(String question) {
         String[] numbersAndResourceName = question.split(SEPARATOR);
         List<RomanNumber> romanNumbers = this.readRomanNumbers(intergalacticUnitDictionary, numbersAndResourceName);
         String resourceName = parseResourceName(numbersAndResourceName, romanNumbers.size());
         Optional<Resource> resourceByName = resourcesRepository.getDefinitionByKey(resourceName);
         if (!resourceByName.isPresent()) {
-            throw new ParserException();
+            return MESSAGE;
         }
         int multiply = romanNumberCalculator.calculate(romanNumbers);
         return formatAnswer(question, format.format(multiply * resourceByName.get().getPrice()));

@@ -1,6 +1,5 @@
 package com.thoughtworks.test.question;
 
-import com.thoughtworks.test.parser.ParserException;
 import com.thoughtworks.test.question.processor.QuestionProcessor;
 
 import java.util.ArrayList;
@@ -18,23 +17,21 @@ public class QuestionEngine {
         this.processors.putAll(processors);
     }
 
-    public List<String> processQuestions(DefaultQuestionList questionMap) {
+    public List<String> processQuestions(QuestionList questionMap) {
         List<String> answers = new ArrayList<>();
         List<Question> questionsForRegex = questionMap.getQuestions();
-        for (Question question : questionsForRegex)
-            try {
-                answers.add(getQuestionProcessor(question).answerQuestion(question.getQuestionText()));
-            } catch (ParserException e) {
+        for (Question question : questionsForRegex) {
+            QuestionProcessor questionProcessor = getQuestionProcessor(question);
+            if (questionProcessor != null) {
+                answers.add(questionProcessor.answerQuestion(question.getQuestionText()));
+            } else {
                 answers.add(MESSAGE);
             }
+        }
         return answers;
     }
 
-    private QuestionProcessor getQuestionProcessor(Question question) throws ParserException {
-        QuestionProcessor processor = processors.get(question.getQuestionType());
-        if (processor == null) {
-            throw new ParserException();
-        }
-        return processor;
+    private QuestionProcessor getQuestionProcessor(Question question) {
+        return processors.get(question.getQuestionType());
     }
 }

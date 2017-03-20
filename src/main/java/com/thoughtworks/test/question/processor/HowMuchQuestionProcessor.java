@@ -4,14 +4,12 @@ import com.thoughtworks.test.definition.DefinitionDictionary;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
 import com.thoughtworks.test.romannumber.RomanNumber;
 import com.thoughtworks.test.romannumber.RomanNumberCalculator;
-import com.thoughtworks.test.parser.ParserException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.thoughtworks.test.configuration.DefaultConfiguration.IS;
-import static com.thoughtworks.test.configuration.DefaultConfiguration.SEPARATOR;
+import static com.thoughtworks.test.configuration.DefaultConfiguration.*;
 
 public class HowMuchQuestionProcessor implements QuestionProcessor {
 
@@ -24,11 +22,11 @@ public class HowMuchQuestionProcessor implements QuestionProcessor {
     }
 
     @Override
-    public String answerQuestion(String question) throws ParserException {
+    public String answerQuestion(String question) {
         String[] numbers = question.split(SEPARATOR);
         List<RomanNumber> romanNumbers = this.readRomanNumbers(intergalacticUnitDictionary, numbers);
         if (romanNumbers.size() != numbers.length) {
-            throw new ParserException();
+            return MESSAGE;
         }
         int result = romanNumberCalculator.calculate(romanNumbers);
         return getAnswer(question, Integer.toString(result));
