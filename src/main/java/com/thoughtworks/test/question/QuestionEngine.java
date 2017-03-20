@@ -18,7 +18,7 @@ public class QuestionEngine {
         this.processors.putAll(processors);
     }
 
-    public List<String> processQuestions(QuestionMap questionMap) {
+    public List<String> processQuestions(DefaultQuestionList questionMap) {
         List<String> answers = new ArrayList<>();
         List<Question> questionsForRegex = questionMap.getQuestions();
         for (Question question : questionsForRegex)

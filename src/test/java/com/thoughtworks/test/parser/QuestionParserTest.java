@@ -1,7 +1,7 @@
 package com.thoughtworks.test.parser;
 
 import com.thoughtworks.test.parser.question.QuestionParser;
-import com.thoughtworks.test.question.QuestionMap;
+import com.thoughtworks.test.question.DefaultQuestionList;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,11 +13,11 @@ import static org.junit.Assert.*;
 
 public class QuestionParserTest {
 
-    private QuestionMap results;
+    private DefaultQuestionList results;
 
     @Before
     public void setUp() {
-        results = new QuestionMap();
+        results = new DefaultQuestionList();
     }
 
     @Test

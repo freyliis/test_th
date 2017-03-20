@@ -2,7 +2,7 @@ package com.thoughtworks.test.parser;
 
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
 import com.thoughtworks.test.romannumber.RomanNumber;
-import com.thoughtworks.test.parser.definition.IntergalacticUnitToRomanNumberParser;
+import com.thoughtworks.test.parser.definition.IntergalacticUnitDefinitionParser;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class IntergalacticUnitToRomanNumberParserTest {
     public void shouldParseGlobAsI() {
         IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         String glob = "glob";
-        IntergalacticUnitToRomanNumberParser objectUnderTest = new IntergalacticUnitToRomanNumberParser(intergalacticUnitDictionary);
+        IntergalacticUnitDefinitionParser objectUnderTest = new IntergalacticUnitDefinitionParser(intergalacticUnitDictionary);
         boolean result = objectUnderTest.parse("glob is I");
         assertTrue(result);
         assertThat(intergalacticUnitDictionary.getDefinitionByKey(glob).get().getRomanNumber(), CoreMatchers.is(RomanNumber.I));
@@ -24,7 +24,7 @@ public class IntergalacticUnitToRomanNumberParserTest {
     public void shouldNotParseGlobAsK() {
         IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         String glob = "glob";
-        IntergalacticUnitToRomanNumberParser objectUnderTest = new IntergalacticUnitToRomanNumberParser(intergalacticUnitDictionary);
+        IntergalacticUnitDefinitionParser objectUnderTest = new IntergalacticUnitDefinitionParser(intergalacticUnitDictionary);
         boolean result = objectUnderTest.parse(glob + " is K");
         assertFalse(result);
     }
@@ -33,7 +33,7 @@ public class IntergalacticUnitToRomanNumberParserTest {
     public void shouldNotParseGlobIsVV() {
         IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         String glob = "glob";
-        IntergalacticUnitToRomanNumberParser objectUnderTest = new IntergalacticUnitToRomanNumberParser(intergalacticUnitDictionary);
+        IntergalacticUnitDefinitionParser objectUnderTest = new IntergalacticUnitDefinitionParser(intergalacticUnitDictionary);
         boolean result = objectUnderTest.parse(glob + " is VV");
         assertFalse(result);
     }

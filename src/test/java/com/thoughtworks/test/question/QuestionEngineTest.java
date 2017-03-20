@@ -23,7 +23,7 @@ public class QuestionEngineTest {
     public void shouldProcessEmptyQuestionMap() throws ParserException {
         Map<String, QuestionProcessor> processors = new HashMap<>();
         QuestionEngine objectUnderTest = new QuestionEngine(processors);
-        List<String> result = objectUnderTest.processQuestions(new QuestionMap());
+        List<String> result = objectUnderTest.processQuestions(new DefaultQuestionList());
         assertThat(result.size(), is(0));
     }
 
@@ -31,8 +31,8 @@ public class QuestionEngineTest {
     public void shouldProcessQuestionMapButEmptyProcessorsMap() throws ParserException {
         Map<String, QuestionProcessor> processors = new HashMap<>();
         QuestionEngine objectUnderTest = new QuestionEngine(processors);
-        QuestionMap questionMap = new QuestionMap();
-        questionMap.addQuestion(HOW_MUCH_IS_REGEX, "pish tegj glob glob");
+        DefaultQuestionList questionMap = new DefaultQuestionList();
+        questionMap.addQuestion(new Question(HOW_MUCH_IS_REGEX, "pish tegj glob glob"));
         List<String> result = objectUnderTest.processQuestions(questionMap);
         assertThat(result.size(), is(1));
         assertThat(result.get(0), is("I have no idea what you are talking about"));
@@ -43,8 +43,8 @@ public class QuestionEngineTest {
         Map<String, QuestionProcessor> processors = new HashMap<>();
         processors.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(new DefaultRomanNumberCalculator(), new IntergalacticUnitDictionary()));
         QuestionEngine objectUnderTest = new QuestionEngine(processors);
-        QuestionMap questionMap = new QuestionMap();
-        questionMap.addQuestion(HOW_MUCH_IS_REGEX, "pish tegj glob glob");
+        DefaultQuestionList questionMap = new DefaultQuestionList();
+        questionMap.addQuestion(new Question(HOW_MUCH_IS_REGEX, "pish tegj glob glob"));
         List<String> result = objectUnderTest.processQuestions(questionMap);
         assertThat(result.size(), is(1));
         assertThat(result.get(0), is("I have no idea what you are talking about"));
@@ -59,8 +59,8 @@ public class QuestionEngineTest {
         Map<String, QuestionProcessor> processors = new HashMap<>();
         processors.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(new DefaultRomanNumberCalculator(), intergalacticUnitDictionary));
         QuestionEngine objectUnderTest = new QuestionEngine(processors);
-        QuestionMap questionMap = new QuestionMap();
-        questionMap.addQuestion(HOW_MUCH_IS_REGEX, "pish tegj glob glob");
+        DefaultQuestionList questionMap = new DefaultQuestionList();
+        questionMap.addQuestion(new Question(HOW_MUCH_IS_REGEX, "pish tegj glob glob"));
         List<String> result = objectUnderTest.processQuestions(questionMap);
         assertThat(result.size(), is(1));
         assertThat(result.get(0), is("pish tegj glob glob is 42"));

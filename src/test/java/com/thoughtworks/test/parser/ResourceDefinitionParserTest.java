@@ -6,7 +6,7 @@ import com.thoughtworks.test.romannumber.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
 import com.thoughtworks.test.romannumber.RomanNumber;
 import com.thoughtworks.test.definition.resource.Resource;
-import com.thoughtworks.test.parser.definition.ResourceParser;
+import com.thoughtworks.test.parser.definition.ResourceDefinitionParser;
 import com.thoughtworks.test.definition.resource.ResourcesDictionary;
 import org.junit.Test;
 
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-public class ResourceParserTest {
+public class ResourceDefinitionParserTest {
 
     private DefinitionDictionary<IntergalacticUnit> intergalacticUnitDictionary = new IntergalacticUnitDictionary();
     private DefinitionDictionary<Resource> resourcesRepository = new ResourcesDictionary();
@@ -25,7 +25,7 @@ public class ResourceParserTest {
     public void shouldParseGlobGlobSilverIs34CreditsToSilverWithPrice17() {
         intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("glob", RomanNumber.I));
-        ResourceParser objectUnderTest = new ResourceParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
+        ResourceDefinitionParser objectUnderTest = new ResourceDefinitionParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
         boolean result = objectUnderTest.parse("glob glob Silver is 34 Credits");
         assertTrue(result);
         assertThat(resourcesRepository.getDefinitionByKey("Silver").get().getPrice(), is(17d));
@@ -35,7 +35,7 @@ public class ResourceParserTest {
     public void shouldParsePishPishIronIs3910CreditsToIronWithPrice() {
         intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("pish", RomanNumber.X));
-        ResourceParser objectUnderTest = new ResourceParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
+        ResourceDefinitionParser objectUnderTest = new ResourceDefinitionParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
         boolean result = objectUnderTest.parse("pish pish Iron is 3910 Credits");
         assertTrue(result);
         assertThat(resourcesRepository.getDefinitionByKey("Iron").get().getPrice(), is(195.5));
@@ -45,7 +45,7 @@ public class ResourceParserTest {
     public void shouldThrowAnExceptionDueToMissingIntergalacticUnit() {
         intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("glob", RomanNumber.I));
-        ResourceParser objectUnderTest = new ResourceParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
+        ResourceDefinitionParser objectUnderTest = new ResourceDefinitionParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
         objectUnderTest.parse("bub Silver is 34 Credits");
     }
 
@@ -53,7 +53,7 @@ public class ResourceParserTest {
     public void shouldParseResourceWithMissingUnit() {
         intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("glob", RomanNumber.I));
-        ResourceParser objectUnderTest = new ResourceParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
+        ResourceDefinitionParser objectUnderTest = new ResourceDefinitionParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
         boolean result = objectUnderTest.parse("glob bub Silver is 34 Credits");
         assertTrue(result);
     }
@@ -62,7 +62,7 @@ public class ResourceParserTest {
     public void shouldThrowAnExceptionDueToWrongNumberOfCredits() {
         intergalacticUnitDictionary = new IntergalacticUnitDictionary();
         intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("glob", RomanNumber.I));
-        ResourceParser objectUnderTest = new ResourceParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
+        ResourceDefinitionParser objectUnderTest = new ResourceDefinitionParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator);
         boolean result = objectUnderTest.parse("glob Silver is bub Credits");
         assertFalse(result);
     }

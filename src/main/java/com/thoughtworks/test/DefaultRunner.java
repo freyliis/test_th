@@ -7,7 +7,7 @@ import com.thoughtworks.test.inputreader.InputReader;
 import com.thoughtworks.test.inputreader.ReadException;
 import com.thoughtworks.test.outputwriter.ConsoleOutputWriter;
 import com.thoughtworks.test.outputwriter.OutputWriter;
-import com.thoughtworks.test.question.QuestionMap;
+import com.thoughtworks.test.question.DefaultQuestionList;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class DefaultRunner implements Runner {
 
     private Configuration configuration = new DefaultConfiguration();
     private OutputWriter outputWriter = new ConsoleOutputWriter();
-    private QuestionMap questionMap = new QuestionMap();
+    private DefaultQuestionList questionMap = new DefaultQuestionList();
     private static final Logger LOGGER = new Logger(DefaultRunner.class.getName());
 
     public void run(String source) {

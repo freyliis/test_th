@@ -8,11 +8,11 @@ import com.thoughtworks.test.parser.ReadParser;
 import static com.thoughtworks.test.configuration.DefaultConfiguration.IS;
 import static com.thoughtworks.test.configuration.DefaultConfiguration.NUMBER_DEFINITION_REGEX;
 
-public class IntergalacticUnitToRomanNumberParser implements ReadParser {
+public class IntergalacticUnitDefinitionParser implements ReadParser {
 
     private IntergalacticUnitDictionary intergalacticUnitDictionary;
 
-    public IntergalacticUnitToRomanNumberParser(IntergalacticUnitDictionary intergalacticUnitDictionary) {
+    public IntergalacticUnitDefinitionParser(IntergalacticUnitDictionary intergalacticUnitDictionary) {
         this.intergalacticUnitDictionary = intergalacticUnitDictionary;
     }
 

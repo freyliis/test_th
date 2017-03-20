@@ -6,8 +6,8 @@ import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDicti
 import com.thoughtworks.test.romannumber.RomanNumberCalculator;
 import com.thoughtworks.test.parser.DefaultParserEngine;
 import com.thoughtworks.test.parser.ReadParser;
-import com.thoughtworks.test.parser.definition.ResourceParser;
-import com.thoughtworks.test.parser.definition.IntergalacticUnitToRomanNumberParser;
+import com.thoughtworks.test.parser.definition.ResourceDefinitionParser;
+import com.thoughtworks.test.parser.definition.IntergalacticUnitDefinitionParser;
 import com.thoughtworks.test.parser.question.QuestionParser;
 import com.thoughtworks.test.question.*;
 import com.thoughtworks.test.question.processor.HowManyQuestionProcessor;
@@ -35,12 +35,12 @@ public class DefaultConfiguration implements Configuration {
     private IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
     private DefinitionDictionary resourcesRepository = new ResourcesDictionary();
 
-    public DefaultParserEngine createParserEngine(QuestionMap questionMap) {
+    public DefaultParserEngine createParserEngine(DefaultQuestionList questionMap) {
         List<ReadParser> parsers = new ArrayList<>();
         parsers.add(new QuestionParser(HOW_MUCH_IS_REGEX, questionMap));
         parsers.add(new QuestionParser(HOW_MANY_IS_REGEX, questionMap));
-        parsers.add(new ResourceParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator));
-        parsers.add(new IntergalacticUnitToRomanNumberParser(intergalacticUnitDictionary));
+        parsers.add(new ResourceDefinitionParser(intergalacticUnitDictionary, resourcesRepository, romanNumberCalculator));
+        parsers.add(new IntergalacticUnitDefinitionParser(intergalacticUnitDictionary));
         parsers.add(new QuestionParser("", questionMap));
         return new DefaultParserEngine(parsers);
     }

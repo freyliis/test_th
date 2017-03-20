@@ -21,6 +21,7 @@ Assumptions:
          </ul>
 </ul>
 </li>
+<li>All input is first parsed then questions are answered. Int That case there can be many definitions but valid is the last one.</li>
 <li>If the definition matches regex but input is invalid, like:
 <ul>
       <li>Invalid Roman Number</li>
@@ -29,5 +30,5 @@ Assumptions:
 there is a Parse Exception thrown and program ends.
 </li>
 <li>In the resource definition starting strings are parsed to Roman Numbers until there is unknown text. Then the rest is treated as resource name</li>
-<li>There can be many definitions of Roman Numbers in the input. The valid one is the last one</li>
+<li></li>
 </ul>

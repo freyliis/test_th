@@ -14,13 +14,13 @@ import java.util.Optional;
 
 import static com.thoughtworks.test.configuration.DefaultConfiguration.*;
 
-public class ResourceParser implements ReadParser {
+public class ResourceDefinitionParser implements ReadParser {
 
     private DefinitionDictionary intergalacticUnitDictionary;
     private DefinitionDictionary resourcesRepository;
     private RomanNumberCalculator romanNumberCalculator;
 
-    public ResourceParser(DefinitionDictionary intergalacticUnitDictionary, DefinitionDictionary resourcesRepository, RomanNumberCalculator romanNumberCalculator) {
+    public ResourceDefinitionParser(DefinitionDictionary intergalacticUnitDictionary, DefinitionDictionary resourcesRepository, RomanNumberCalculator romanNumberCalculator) {
         this.intergalacticUnitDictionary = intergalacticUnitDictionary;
         this.resourcesRepository = resourcesRepository;
         this.romanNumberCalculator = romanNumberCalculator;
