@@ -1,11 +1,14 @@
-package com.thoughtworks.test.question;
+package com.thoughtworks.test.question.engine.impl;
 
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
+import com.thoughtworks.test.question.DefaultQuestionList;
+import com.thoughtworks.test.question.Question;
+import com.thoughtworks.test.question.engine.impl.DefaultQuestionEngine;
 import com.thoughtworks.test.romannumber.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
 import com.thoughtworks.test.romannumber.RomanNumber;
 import com.thoughtworks.test.parser.ParserException;
-import com.thoughtworks.test.question.processor.HowMuchQuestionProcessor;
+import com.thoughtworks.test.question.processor.impl.HowMuchQuestionProcessor;
 import com.thoughtworks.test.question.processor.QuestionProcessor;
 import org.junit.Test;
 
@@ -13,16 +16,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.thoughtworks.test.configuration.DefaultConfiguration.HOW_MUCH_IS_REGEX;
+import static com.thoughtworks.test.configuration.impl.DefaultConfiguration.HOW_MUCH_IS_REGEX;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class QuestionEngineTest {
+public class DefaultQuestionEngineTest {
 
     @Test
     public void shouldProcessEmptyQuestionMap() throws ParserException {
         Map<String, QuestionProcessor> processors = new HashMap<>();
-        QuestionEngine objectUnderTest = new QuestionEngine(processors);
+        DefaultQuestionEngine objectUnderTest = new DefaultQuestionEngine(processors);
         List<String> result = objectUnderTest.processQuestions(new DefaultQuestionList());
         assertThat(result.size(), is(0));
     }
@@ -30,7 +33,7 @@ public class QuestionEngineTest {
     @Test
     public void shouldProcessQuestionMapButEmptyProcessorsMap() throws ParserException {
         Map<String, QuestionProcessor> processors = new HashMap<>();
-        QuestionEngine objectUnderTest = new QuestionEngine(processors);
+        DefaultQuestionEngine objectUnderTest = new DefaultQuestionEngine(processors);
         DefaultQuestionList questionMap = new DefaultQuestionList();
         questionMap.addQuestion(new Question(HOW_MUCH_IS_REGEX, "pish tegj glob glob"));
         List<String> result = objectUnderTest.processQuestions(questionMap);
@@ -42,7 +45,7 @@ public class QuestionEngineTest {
     public void shouldProcessQuestionMapAndReturnDefaultAnswerDueToEmptyNumbers() throws ParserException {
         Map<String, QuestionProcessor> processors = new HashMap<>();
         processors.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(new DefaultRomanNumberCalculator(), new IntergalacticUnitDictionary()));
-        QuestionEngine objectUnderTest = new QuestionEngine(processors);
+        DefaultQuestionEngine objectUnderTest = new DefaultQuestionEngine(processors);
         DefaultQuestionList questionMap = new DefaultQuestionList();
         questionMap.addQuestion(new Question(HOW_MUCH_IS_REGEX, "pish tegj glob glob"));
         List<String> result = objectUnderTest.processQuestions(questionMap);
@@ -58,7 +61,7 @@ public class QuestionEngineTest {
         intergalacticUnitDictionary.addDefinition(new IntergalacticUnit("glob", RomanNumber.I));
         Map<String, QuestionProcessor> processors = new HashMap<>();
         processors.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(new DefaultRomanNumberCalculator(), intergalacticUnitDictionary));
-        QuestionEngine objectUnderTest = new QuestionEngine(processors);
+        DefaultQuestionEngine objectUnderTest = new DefaultQuestionEngine(processors);
         DefaultQuestionList questionMap = new DefaultQuestionList();
         questionMap.addQuestion(new Question(HOW_MUCH_IS_REGEX, "pish tegj glob glob"));
         List<String> result = objectUnderTest.processQuestions(questionMap);

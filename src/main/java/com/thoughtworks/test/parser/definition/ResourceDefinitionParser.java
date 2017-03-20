@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.thoughtworks.test.configuration.DefaultConfiguration.*;
+import static com.thoughtworks.test.configuration.impl.DefaultConfiguration.*;
 
 public class ResourceDefinitionParser implements ReadParser {
 

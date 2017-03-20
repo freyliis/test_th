@@ -6,8 +6,8 @@ import com.thoughtworks.test.parser.ParserException;
 import com.thoughtworks.test.parser.ReadParser;
 import com.thoughtworks.test.romannumber.RomanNumber;
 
-import static com.thoughtworks.test.configuration.DefaultConfiguration.IS;
-import static com.thoughtworks.test.configuration.DefaultConfiguration.NUMBER_DEFINITION_REGEX;
+import static com.thoughtworks.test.configuration.impl.DefaultConfiguration.IS;
+import static com.thoughtworks.test.configuration.impl.DefaultConfiguration.NUMBER_DEFINITION_REGEX;
 
 public class IntergalacticUnitDefinitionParser implements ReadParser {
 

@@ -1,5 +1,7 @@
-package com.thoughtworks.test.inputreader;
+package com.thoughtworks.test.inputreader.impl;
 
+import com.thoughtworks.test.inputreader.ReadException;
+import com.thoughtworks.test.inputreader.impl.FileLineByLineInputReader;
 import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
 import org.junit.Test;

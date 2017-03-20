@@ -1,13 +1,14 @@
-package com.thoughtworks.test.question.processor;
+package com.thoughtworks.test.question.processor.impl;
 
 import com.thoughtworks.test.definition.DefinitionDictionary;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnit;
+import com.thoughtworks.test.question.processor.QuestionProcessor;
 import com.thoughtworks.test.romannumber.RomanNumberCalculator;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.thoughtworks.test.configuration.DefaultConfiguration.*;
+import static com.thoughtworks.test.configuration.impl.DefaultConfiguration.*;
 
 public class HowMuchQuestionProcessor implements QuestionProcessor {
 

@@ -1,4 +1,6 @@
-package com.thoughtworks.test.outputwriter;
+package com.thoughtworks.test.outputwriter.impl;
+
+import com.thoughtworks.test.outputwriter.OutputWriter;
 
 import java.util.List;
 

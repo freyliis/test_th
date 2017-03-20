@@ -1,11 +1,11 @@
 package com.thoughtworks.test;
 
 import com.thoughtworks.test.configuration.Configuration;
-import com.thoughtworks.test.configuration.DefaultConfiguration;
-import com.thoughtworks.test.inputreader.FileLineByLineInputReader;
+import com.thoughtworks.test.configuration.impl.DefaultConfiguration;
+import com.thoughtworks.test.inputreader.impl.FileLineByLineInputReader;
 import com.thoughtworks.test.inputreader.InputReader;
 import com.thoughtworks.test.inputreader.ReadException;
-import com.thoughtworks.test.outputwriter.ConsoleOutputWriter;
+import com.thoughtworks.test.outputwriter.impl.ConsoleOutputWriter;
 import com.thoughtworks.test.outputwriter.OutputWriter;
 import com.thoughtworks.test.parser.ParserException;
 import com.thoughtworks.test.question.QuestionList;

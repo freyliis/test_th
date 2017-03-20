@@ -1,9 +1,8 @@
 package com.thoughtworks.test.definition.intergalacticunit;
 
-import com.thoughtworks.test.definition.Definition;
 import com.thoughtworks.test.romannumber.RomanNumber;
 
-public class IntergalacticUnit implements Definition {
+public class IntergalacticUnit {
 
     private final String unitName;
     private final RomanNumber romanNumber;

@@ -1,5 +1,8 @@
-package com.thoughtworks.test.question;
+package com.thoughtworks.test.question.engine.impl;
 
+import com.thoughtworks.test.question.Question;
+import com.thoughtworks.test.question.QuestionList;
+import com.thoughtworks.test.question.engine.QuestionEngine;
 import com.thoughtworks.test.question.processor.QuestionProcessor;
 
 import java.util.ArrayList;
@@ -7,13 +10,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.thoughtworks.test.configuration.DefaultConfiguration.MESSAGE;
+import static com.thoughtworks.test.configuration.impl.DefaultConfiguration.MESSAGE;
 
-public class QuestionEngine {
+public class DefaultQuestionEngine implements QuestionEngine<String> {
 
     private final Map<String, QuestionProcessor> processors = new HashMap<>();
 
-    public QuestionEngine(Map<String, QuestionProcessor> processors) {
+    public DefaultQuestionEngine(Map<String, QuestionProcessor> processors) {
         this.processors.putAll(processors);
     }
 

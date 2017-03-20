@@ -1,8 +1,9 @@
-package com.thoughtworks.test.question.processor;
+package com.thoughtworks.test.question.processor.impl;
 
+import com.thoughtworks.test.question.processor.impl.WrongQuestionProcessor;
 import org.junit.Test;
 
-import static com.thoughtworks.test.configuration.DefaultConfiguration.MESSAGE;
+import static com.thoughtworks.test.configuration.impl.DefaultConfiguration.MESSAGE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 

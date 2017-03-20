@@ -6,8 +6,8 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.thoughtworks.test.configuration.DefaultConfiguration.HOW_MANY_IS_REGEX;
-import static com.thoughtworks.test.configuration.DefaultConfiguration.HOW_MUCH_IS_REGEX;
+import static com.thoughtworks.test.configuration.impl.DefaultConfiguration.HOW_MANY_IS_REGEX;
+import static com.thoughtworks.test.configuration.impl.DefaultConfiguration.HOW_MUCH_IS_REGEX;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 

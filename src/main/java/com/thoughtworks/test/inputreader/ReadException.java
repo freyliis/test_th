@@ -11,7 +11,4 @@ public class ReadException extends Exception {
         super(message);
     }
 
-    public ReadException(String message, IOException e) {
-        super(message, e);
-    }
 }

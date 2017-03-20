@@ -5,7 +5,7 @@ import com.thoughtworks.test.parser.ReadParser;
 import com.thoughtworks.test.question.Question;
 import com.thoughtworks.test.question.QuestionList;
 
-import static com.thoughtworks.test.configuration.DefaultConfiguration.SEPARATOR;
+import static com.thoughtworks.test.configuration.impl.DefaultConfiguration.SEPARATOR;
 
 public class QuestionParser implements ReadParser {
 

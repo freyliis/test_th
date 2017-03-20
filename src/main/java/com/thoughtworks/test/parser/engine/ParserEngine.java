@@ -1,6 +1,7 @@
-package com.thoughtworks.test.parser;
+package com.thoughtworks.test.parser.engine;
 
 import com.thoughtworks.test.inputreader.InputReader;
+import com.thoughtworks.test.parser.ParserException;
 
 public interface ParserEngine {
 

@@ -1,4 +1,7 @@
-package com.thoughtworks.test.inputreader;
+package com.thoughtworks.test.inputreader.impl;
+
+import com.thoughtworks.test.inputreader.InputReader;
+import com.thoughtworks.test.inputreader.ReadException;
 
 import java.io.BufferedReader;
 import java.io.IOException;

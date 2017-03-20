@@ -1,20 +1,23 @@
-package com.thoughtworks.test.configuration;
+package com.thoughtworks.test.configuration.impl;
 
+import com.thoughtworks.test.configuration.Configuration;
 import com.thoughtworks.test.definition.DefinitionDictionary;
 import com.thoughtworks.test.definition.intergalacticunit.IntergalacticUnitDictionary;
 import com.thoughtworks.test.definition.resource.ResourcesDictionary;
-import com.thoughtworks.test.parser.DefaultParserEngine;
 import com.thoughtworks.test.parser.ReadParser;
 import com.thoughtworks.test.parser.definition.IntergalacticUnitDefinitionParser;
 import com.thoughtworks.test.parser.definition.ResourceDefinitionParser;
+import com.thoughtworks.test.parser.engine.ParserEngine;
+import com.thoughtworks.test.parser.engine.impl.DefaultParserEngine;
 import com.thoughtworks.test.parser.question.QuestionParser;
 import com.thoughtworks.test.question.DefaultQuestionList;
-import com.thoughtworks.test.question.QuestionEngine;
 import com.thoughtworks.test.question.QuestionList;
-import com.thoughtworks.test.question.processor.HowManyQuestionProcessor;
-import com.thoughtworks.test.question.processor.HowMuchQuestionProcessor;
+import com.thoughtworks.test.question.engine.QuestionEngine;
+import com.thoughtworks.test.question.engine.impl.DefaultQuestionEngine;
 import com.thoughtworks.test.question.processor.QuestionProcessor;
-import com.thoughtworks.test.question.processor.WrongQuestionProcessor;
+import com.thoughtworks.test.question.processor.impl.HowManyQuestionProcessor;
+import com.thoughtworks.test.question.processor.impl.HowMuchQuestionProcessor;
+import com.thoughtworks.test.question.processor.impl.WrongQuestionProcessor;
 import com.thoughtworks.test.romannumber.DefaultRomanNumberCalculator;
 import com.thoughtworks.test.romannumber.RomanNumberCalculator;
 
@@ -37,7 +40,7 @@ public class DefaultConfiguration implements Configuration {
     private IntergalacticUnitDictionary intergalacticUnitDictionary = new IntergalacticUnitDictionary();
     private DefinitionDictionary resourcesRepository = new ResourcesDictionary();
 
-    public DefaultParserEngine createParserEngine(QuestionList questionMap) {
+    public ParserEngine createParserEngine(QuestionList questionMap) {
         List<ReadParser> parsers = new ArrayList<>();
         parsers.add(new QuestionParser(HOW_MUCH_IS_REGEX, questionMap));
         parsers.add(new QuestionParser(HOW_MANY_IS_REGEX, questionMap));
@@ -52,7 +55,7 @@ public class DefaultConfiguration implements Configuration {
         questionProcessorMap.put(HOW_MUCH_IS_REGEX, new HowMuchQuestionProcessor(romanNumberCalculator, intergalacticUnitDictionary));
         questionProcessorMap.put(HOW_MANY_IS_REGEX, new HowManyQuestionProcessor(romanNumberCalculator, intergalacticUnitDictionary, resourcesRepository));
         questionProcessorMap.put("", new WrongQuestionProcessor());
-        return new QuestionEngine(questionProcessorMap);
+        return new DefaultQuestionEngine(questionProcessorMap);
     }
 
     @Override
