@@ -36,7 +36,10 @@ there is a ParserException thrown and program ends.
 </ul>
 Design:
 <ul>
-<li>The main idea is to have easy way of adding new parsers and processors so all logic is hidden in the implementations.
+<li>The main idea is to have easy way of injecting new parsers and processors so all logic is hidden in the implementations.
 Due to this solution the input text line has to visit every parser to find correct one.</li>
 <li>For question processors there is a map, evey new question has a regexp for parser and then it is used as a key in processors.</li>
+<li>Added a simple logger implementation - I could use Java one but I prefer to use slf4j for hiding the implementation, but using frameworks is prohibited.</li>
+<li>For reading I used BufferedReader and reading line by line, to prevent loading into memory big files</li>
+
 </ul>
