@@ -26,37 +26,37 @@ public class IntegrationTest {
     @Parameterized.Parameters
     public static Collection data() {
         return Arrays.asList(new Object[][]{
-                {"glob is I\n"
-                        + "prok is V\n"
-                        + "pish is X\n"
-                        + "tegj is L\n"
-                        + "glob glob Silver is 34 Credits\n"
-                        + "glob prok Gold is 57800 Credits\n"
-                        + "pish pish Iron is 3910 Credits\n"
-                        + " how much is pish tegj glob glob ?\n"
-                        + "how many Credits is glob prok Silver ?\n"
-                        + "how many Credits is glob prok Gold ?\n"
-                        + "how many Credits is glob prok Iron ?\n"
-                        + "how much wood could a woodchuck chuck if a woodchuck could chuck wood ?\n"
-                        + "how many Credits is glob prok Grzyb ?\n"
-                        + "how much is piri piri ?\n"
-                        + "how many is piri piri ?\n",
-                        "pish tegj glob glob is 42\r\n"
-                                + "glob prok Silver is 68 Credits\r\n"
-                                + "glob prok Gold is 57800 Credits\r\n"
-                                + "glob prok Iron is 782 Credits\r\n"
-                                + "I have no idea what you are talking about\r\n"
-                                + "I have no idea what you are talking about\r\n"
-                                + "I have no idea what you are talking about\r\n"
-                                + "I have no idea what you are talking about\r\n"
+                {"glob is I" + System.lineSeparator()
+                        + "prok is V" + System.lineSeparator()
+                        + "pish is X" + System.lineSeparator()
+                        + "tegj is L" + System.lineSeparator()
+                        + "glob glob Silver is 34 Credits" + System.lineSeparator()
+                        + "glob prok Gold is 57800 Credits" + System.lineSeparator()
+                        + "pish pish Iron is 3910 Credits" + System.lineSeparator()
+                        + " how much is pish tegj glob glob ?" + System.lineSeparator()
+                        + "how many Credits is glob prok Silver ?" + System.lineSeparator()
+                        + "how many Credits is glob prok Gold ?" + System.lineSeparator()
+                        + "how many Credits is glob prok Iron ?" + System.lineSeparator()
+                        + "how much wood could a woodchuck chuck if a woodchuck could chuck wood ?" + System.lineSeparator()
+                        + "how many Credits is glob prok Grzyb ?" + System.lineSeparator()
+                        + "how much is piri piri ?" + System.lineSeparator()
+                        + "how many is piri piri ?" + System.lineSeparator(),
+                        "pish tegj glob glob is 42" + System.lineSeparator()
+                                + "glob prok Silver is 68 Credits" + System.lineSeparator()
+                                + "glob prok Gold is 57800 Credits" + System.lineSeparator()
+                                + "glob prok Iron is 782 Credits" + System.lineSeparator()
+                                + "I have no idea what you are talking about" + System.lineSeparator()
+                                + "I have no idea what you are talking about" + System.lineSeparator()
+                                + "I have no idea what you are talking about" + System.lineSeparator()
+                                + "I have no idea what you are talking about" + System.lineSeparator()
                 },
-                {"glob is I\n"
-                        + "prok is X\n"
-                        + "glob glob Silver is 34 Credits\n"
-                        + "how many Credits is glob prok Silver ?\n"
-                        + " how much is glob ?\n",
-                        "glob prok Silver is 153 Credits\r\n"
-                                + "glob is 1\r\n"
+                {"glob is I" + System.lineSeparator()
+                        + "prok is X" + System.lineSeparator()
+                        + "glob glob Silver is 34 Credits" + System.lineSeparator()
+                        + "how many Credits is glob prok Silver ?" + System.lineSeparator()
+                        + " how much is glob ?" + System.lineSeparator(),
+                        "glob prok Silver is 153 Credits" + System.lineSeparator()
+                                + "glob is 1" + System.lineSeparator()
                 }
         });
     }
